@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import React from 'react'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css';
+import FlashCards from './components/FlashCards'
+import AddCards from './components/AddCards'
+import EditCategories from './components/EditCategories'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+
+            <Switch>
+                <Route path="/" exact component={FlashCards} />
+                <Route path="/Event" component={AddCards} />
+                <Route path="/AddEvent" component={EditCategories} />
+            </Switch>
+        </Router>
   );
 }
 

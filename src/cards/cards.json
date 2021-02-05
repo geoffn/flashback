@@ -1,0 +1,62 @@
+[
+{
+    "spanish": "domingo",
+    "english" : "sunday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish": "sabado",
+    "english" : "saturday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish": "martes",
+    "english" : "tueday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish": "miercoles",
+    "english" : "wednesday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish": "lunes",
+    "english" : "monday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish": "viernes",
+    "english" : "friday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish": "jueves",
+    "english" : "thursday",
+    "category" : "calendar",
+    "alternative" : "",
+    "type" : "noun"
+},
+{
+    "spanish" : "perezosos",
+    "english" : "lazy",
+    "category" : "mood",
+    "alternative": {
+        "masculine": "perezosos",
+        "feminine": "perezosas"
+    },
+    "wordType": "adjective"
+
+}
+]
