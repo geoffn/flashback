@@ -5,7 +5,9 @@ import FlashCards from './components/FlashCards'
 import AddCards from './components/AddCards'
 import EditCategories from './components/EditCategories'
 
+
 function App() {
+
   return (
     <Router>
 

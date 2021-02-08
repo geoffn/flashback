@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router"
+
+
 const querystring = require('query-string')
 
 
@@ -7,6 +9,10 @@ var DATA = require('../cards/cards.json')
 
 
 export default function FlashCards(props) {
+
+
+// Query the Films node under it
+// var query = root.child("spanish");
 
 
 var categoryString = querystring.parse(props.location.search)
@@ -26,6 +32,7 @@ console.log(DATA)
                 </div>
                 </div>
             ))}
+
         <div className="cardItem"><h2>Domingo</h2></div>
         <div className="cardItem"><h3>Sunday</h3>
         category: calendar</div>
