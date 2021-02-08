@@ -58,5 +58,16 @@
     },
     "wordType": "adjective"
 
+},
+{
+    "spanish" : "nerviosos",
+    "english" : "nervous",
+    "category" : "mood",
+    "alternative": {
+        "masculine": "nerviosos",
+        "feminine": "nerviosas"
+    },
+    "wordType": "adjective"
+
 }
 ]
