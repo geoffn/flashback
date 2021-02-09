@@ -12,7 +12,7 @@ export default function FlashCardsChild(props) {
         <div>
            {Object.entries(DATA).map(([key, val]) => (
                 
-                    <h4>{key} : {val}
+                    <h4 key={key}>{key} : {val}
                     </h4>
                 
                 

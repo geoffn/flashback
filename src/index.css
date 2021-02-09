@@ -31,9 +31,16 @@ code {
   border-radius: 5px;
   box-shadow: grey;
   text-align: center;
+  cursor: pointer;
   height: 200px;
   width: 200px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+.cardAnswer {
+  display: none;
+}
+.cardAnswer.toggled {
+  display: unset;
 }
