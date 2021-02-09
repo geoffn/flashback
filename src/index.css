@@ -24,12 +24,16 @@ code {
   border-color: brown;
 }
 .fullCard {
-  background-color: blue;
+  background-color: #fff3e6;
   border-color: blueviolet;
-  border: 5px solid black;
+  border: 5px solid #fff3e6;
+  color: #1a508b;
   border-radius: 5px;
   box-shadow: grey;
   text-align: center;
   height: 200px;
   width: 200px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
