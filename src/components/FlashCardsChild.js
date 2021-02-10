@@ -5,12 +5,15 @@ export default function FlashCardsChild(props) {
     
 
     var DATA = props.childList
-    console.log(Object.entries(DATA))
+    if (DATA) {
+        console.log(Object.entries(DATA))
+    }
+    //
     
 
     return (
         <div>
-           {Object.entries(DATA).map(([key, val]) => (
+           {DATA && Object.entries(DATA).map(([key, val]) => (
                 
                     <h4 key={key}>{key} : {val}
                     </h4>

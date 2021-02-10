@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #8a817c;
 }
 
 code {
@@ -40,6 +41,7 @@ code {
 }
 .cardAnswer {
   display: none;
+  color: #463f3a;
 }
 .cardAnswer.toggled {
   display: unset;

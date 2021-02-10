@@ -63,7 +63,7 @@
         "spanish" : "nerviosos",
         "english" : "nervous",
         "category" : "mood",
-        "alternative": { 
+        "alternatives": { 
             "masculine": "nerviosos",
             "feminine": "nerviosas"
         },
