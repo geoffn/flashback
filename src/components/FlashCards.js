@@ -70,7 +70,10 @@ console.log(cardData)
                 <div className="cardItem"><h2>{card.spanish}</h2></div>
                 <div className="cardAnswer">
                     <h2>{card.english}</h2>
-                    <div><FlashCardsChild childList={card.alternatives} />
+                    <div>{card.alternatives.map((alternative,index) => (
+                        
+                        <h4 key={index}>{alternative.altType} : {alternative.value} {console.log("alt =" + alternative.altType)}</h4>
+                    ))}
                        
                     </div>
                 </div>
