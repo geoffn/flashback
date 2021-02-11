@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import Navbar from './Navbar'
 
 export default function AddCards() {
     
@@ -40,6 +41,7 @@ export default function AddCards() {
     return (
 
         <div className="addContainer">
+            <div><Navbar /></div>
             <div className="addCard">
             <Formik
                 initialValues={initialValues}

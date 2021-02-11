@@ -74,7 +74,8 @@ const setToggleAll = (toggleSetting) => {
 
     return (
         <div className="flashCard">
-            <div className="toggleAll"><button id="toggleBtn" onClick={e => setToggleAll('off')}>Toggle All Off</button><button id="toggleBtn" onClick={e => setToggleAll('on')}>Toggle All On</button></div>
+            <div className="toggleAll"><button id="toggleBtn" onClick={e => setToggleAll('off')}>Toggle All Off</button>
+            <button id="toggleBtn" onClick={e => setToggleAll('on')}>Toggle All On</button></div>
             {cardData && cardData.map((card, index) => (
                 <div className="fullCard" id={index} key={index} onClick={e => handleClick(index, e)}>
                 <div className="cardItem"><h2>{card.spanish}</h2></div>
