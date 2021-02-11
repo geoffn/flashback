@@ -23,6 +23,7 @@ code {
   text-align: center;
   border: 5px;
   border-color: brown;
+  padding-top: 10px;
 }
 .fullCard {
   background-color: #fff3e6;
@@ -39,10 +40,81 @@ code {
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
+.toggleAll {
+  grid-column: 1 / 4;
+  background-color: #fff3e6;
+  border-radius: 5px;
+  box-shadow: grey;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 10px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: row;
+}
+.toggleAll button {
+  background-color: #8a817c;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+  justify-items: auto;
+}
 .cardAnswer {
   display: none;
   color: #463f3a;
 }
 .cardAnswer.toggled {
   display: unset;
+}
+
+.addContainer {
+  display: grid;
+  grid-template-columns: auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  text-align: center;
+  border: 5px;
+  border-color: brown;
+  padding-top: 10px;
+}
+.addCard {
+  background-color: #fff3e6;
+  justify-items: center;
+  align-items: center;
+  border-color: blueviolet;
+  border: 5px solid #fff3e6;
+  color: #1a508b;
+  border-radius: 5px;
+  box-shadow: grey;
+  text-align: center;
+  cursor: pointer;
+  height: auto;
+  width: 200px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+.addcard_textfield {
+  border-bottom: 2px solid #8a817c;
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #1a508b;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
 }

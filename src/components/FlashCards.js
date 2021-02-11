@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router"
-import FlashCardsChild from "./FlashCardsChild"
 import axios from 'axios'
 
 const querystring = require('query-string')
@@ -61,10 +60,21 @@ export default function FlashCards(props) {
 // if (categoryString) {
 //     console.log(categoryString)
 // }
-console.log(cardData)
+const setToggleAll = (toggleSetting) => {
+    const answerCards = document.querySelectorAll('.cardAnswer')
+    console.log(answerCards)
+    if(toggleSetting === 'off'){
+    answerCards.forEach(ac => ac.classList.remove('toggled'))
+    }else
+    {
+        answerCards.forEach(ac => ac.classList.add('toggled'))
+    }
+
+}
 
     return (
         <div className="flashCard">
+            <div className="toggleAll"><button id="toggleBtn" onClick={e => setToggleAll('off')}>Toggle All Off</button><button id="toggleBtn" onClick={e => setToggleAll('on')}>Toggle All On</button></div>
             {cardData && cardData.map((card, index) => (
                 <div className="fullCard" id={index} key={index} onClick={e => handleClick(index, e)}>
                 <div className="cardItem"><h2>{card.spanish}</h2></div>

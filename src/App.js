@@ -13,7 +13,7 @@ function App() {
 
             <Switch>
                 <Route path="/" exact component={FlashCards} />
-                <Route path="/Event" component={AddCards} />
+                <Route path="/addcard" component={AddCards} />
                 <Route path="/AddEvent" component={EditCategories} />
             </Switch>
         </Router>
