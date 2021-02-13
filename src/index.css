@@ -1,3 +1,9 @@
+:root {
+  --main_background: #fff3e6;
+  --global_bg: #8a817c;
+  --primary_card_text: #1a508b;
+  --secondary_card_text: #463f3a;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #8a817c;
+  background-color: var(--global_bg);
 }
 
 code {
@@ -22,14 +28,12 @@ code {
   justify-content: center;
   text-align: center;
   border: 5px;
-  border-color: brown;
   padding-top: 10px;
 }
 .fullCard {
-  background-color: #fff3e6;
-  border-color: blueviolet;
-  border: 5px solid #fff3e6;
-  color: #1a508b;
+  background-color: var(--main_background);
+  border: 5px solid var(--main_background);
+  color: var(--primary_card_text);
   border-radius: 5px;
   box-shadow: grey;
   text-align: center;
@@ -42,7 +46,7 @@ code {
 }
 .toggleAll {
   grid-column: 1 / 4;
-  background-color: #fff3e6;
+  background-color: var(--main_background);
   border-radius: 5px;
   box-shadow: grey;
   position: relative;
@@ -59,14 +63,14 @@ code {
   flex-direction: row;
 }
 .toggleAll button {
-  background-color: #8a817c;
+  background-color: var(--global_bg);
   border-radius: 5px;
   padding: 10px;
   width: 200px;
 }
 .cardAnswer {
   display: none;
-  color: #463f3a;
+  color: var(--secondary_card_text);
 }
 .cardAnswer.toggled {
   display: unset;
@@ -80,16 +84,14 @@ code {
   justify-content: center;
   text-align: center;
   border: 5px;
-  border-color: brown;
   padding-top: 10px;
 }
 .addCard {
-  background-color: #fff3e6;
+  background-color: var(--main_background);
   justify-items: center;
   align-items: center;
-  border-color: blueviolet;
-  border: 5px solid #fff3e6;
-  color: #1a508b;
+  border: 5px solid var(--main_background);
+  color: var(--primary_card_text);
   border-radius: 5px;
   box-shadow: grey;
   text-align: center;
@@ -101,12 +103,11 @@ code {
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 .navbar {
-  background-color: #fff3e6;
+  background-color: var(--main_background);
   justify-items: center;
   align-items: center;
-  border-color: blueviolet;
-  border: 5px solid #fff3e6;
-  color: #1a508b;
+  border: 5px solid var(--main_background);
+  color: var(--primary_card_text);
   border-radius: 5px;
   box-shadow: grey;
   text-align: center;
@@ -121,17 +122,38 @@ code {
   text-decoration: none;
 }
 .addcard_textfield {
-  border-bottom: 2px solid #8a817c;
+  border-bottom: 2px solid var(--global_bg);
   font-family: inherit;
   width: 100%;
   border: 0;
   outline: 0;
   font-size: 1.3rem;
-  color: #1a508b;
+  color: var(--primary_card_text);
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
 }
 .nav_active {
   color: #000000;
+}
+
+.categoryBar {
+  background-color: var(--main_background);
+  justify-items: center;
+  align-items: center;
+  border: 5px solid var(--main_background);
+  color: var(--primary_card_text);
+  border-radius: 5px;
+  box-shadow: grey;
+  text-align: center;
+  cursor: pointer;
+  height: auto;
+  width: 200px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+.categoryBar a {
+  text-decoration: none;
+  padding: 10px;
 }
