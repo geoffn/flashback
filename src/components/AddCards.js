@@ -21,7 +21,7 @@ export default function AddCards() {
     const onSubmit = async (values, submitProps) => {
         console.log(JSON.stringify(values))
         const formJSON = JSON.stringify(values)
-        const baseURL = 'http://localhost:3001/card'
+        const baseURL = 'https://flashbackv1api.herokuapp.com/card'
 
         axios({
             method: 'post',

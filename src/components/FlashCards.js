@@ -31,13 +31,13 @@ export default function FlashCards(props) {
     const [cardData, setCardData] = useState(null);
     
     useEffect(() => {
-        var baseURL = 'http://localhost:3001/card'
+        var baseURL = 'https://flashbackv1api.herokuapp.com/card'
         if (props.location.search.length > 1){
             console.log(props.location.search.length)
             var categoryString = querystring.parse(props.location.search)
         
             console.log(categoryString)
-            var baseURL = 'http://localhost:3001/cardcat/' + categoryString.cat
+            var baseURL = 'https://flashbackv1api.herokuapp.com/cardcat/' + categoryString.cat
             console.log(baseURL)
         }
 
@@ -64,7 +64,7 @@ const setToggleAll = (toggleSetting) => {
 }
 
     return (
-        <div className="flashCard"><div className="toggleAll"><CategoryBar /></div>
+        <div className="flashCard"><div className="categoryBarContainer"><CategoryBar /></div>
             <div className="toggleAll"><button id="toggleBtn" onClick={e => setToggleAll('off')}>Toggle All Off</button>
             <button id="toggleBtn" onClick={e => setToggleAll('on')}>Toggle All On</button></div>
             {cardData && cardData.map((card, index) => (

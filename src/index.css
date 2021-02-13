@@ -1,8 +1,8 @@
 :root {
-  --main_background: #fff3e6;
-  --global_bg: #8a817c;
-  --primary_card_text: #1a508b;
-  --secondary_card_text: #463f3a;
+  --main_background: #e97878;
+  --global_bg: #c7ffd8;
+  --primary_card_text: #ffee93;
+  --secondary_card_text: #11698e;
 }
 body {
   margin: 0;
@@ -21,7 +21,7 @@ code {
 
 .flashCard {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 100px auto auto auto;
   height: 200px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -44,8 +44,9 @@ code {
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
+
 .toggleAll {
-  grid-column: 1 / 4;
+  grid-column: 2 / 5;
   background-color: var(--main_background);
   border-radius: 5px;
   box-shadow: grey;
@@ -136,7 +137,10 @@ code {
 .nav_active {
   color: #000000;
 }
-
+.categoryBarContainer {
+  grid-column: 1;
+  grid-row: 1 / 10;
+}
 .categoryBar {
   background-color: var(--main_background);
   justify-items: center;
@@ -148,7 +152,6 @@ code {
   text-align: center;
   cursor: pointer;
   height: auto;
-  width: 200px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
