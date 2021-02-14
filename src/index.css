@@ -30,6 +30,7 @@ code {
   border: 5px;
   padding-top: 10px;
 }
+
 .fullCard {
   background-color: var(--main_background);
   border: 5px solid var(--main_background);
