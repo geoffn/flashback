@@ -122,6 +122,8 @@ code {
 }
 .navbar a {
   text-decoration: none;
+  padding: 10px;
+  color: var(--primary_card_text);
 }
 .addcard_textfield {
   border-bottom: 2px solid var(--global_bg);
@@ -160,4 +162,8 @@ code {
 .categoryBar a {
   text-decoration: none;
   padding: 10px;
+  color: var(--primary_card_text);
+}
+.categoryBar a:active {
+  color: var(--secondary_card_text);
 }
