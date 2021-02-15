@@ -1,34 +1,27 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router"
 import axios from 'axios'
-import anime from 'animejs'
 
 import CategoryBar from './CategoryBar'
 
 const querystring = require('query-string')
 
-let playing = false
+
 
 
 const handleClick = (key, e) => {
-    if(playing)
-    return;
-  
-  playing = true;
     console.log(key)
     var divNode = document.getElementById(key)
-    console.log(divNode)
+
+    var answerCard = divNode.querySelector('.cardAnswer')
+    console.log(answerCard.classList)
+    if(answerCard.classList.contains('toggled')) {
+        answerCard.classList.remove('toggled')
+    } else {
+
     
-    anime({
-        targets: divNode,
-        //scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
-        rotateY: {value: '+=180', delay: 100},
-        easing: 'easeInOutSine',
-        duration: 400,
-        complete: function(anim){
-            playing = false;
-        }
-      });
+    answerCard.classList.add('toggled')
+    }
 }
 
 
@@ -79,6 +72,12 @@ const setToggleAll = (toggleSetting) => {
                 <div className="cardItem"><h2>{card.spanish}</h2></div>
                 <div className="cardAnswer">
                     <h2>{card.english}</h2>
+                    <div>{card.alternatives.map((alternative,index) => (
+                        
+                        <h4 key={index}>{alternative.altType} : {alternative.value}</h4>
+                    ))}
+                       
+                    </div>
                 </div>
                 </div>
             ))}
