@@ -7,6 +7,7 @@ export default function CategoryBar() {
     const [catData, setCatData] = useState(null);
     
     useEffect(() => {
+
     let baseURL = 'http://localhost:3001/cat'
 
         //If search criteria is provided then search

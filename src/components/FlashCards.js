@@ -84,7 +84,7 @@ const setToggleAll = (toggleSetting) => {
         </nav>
         
 
-        <CategoryBar />
+        <CategoryBar active={querystring.parse(props.location.search)}/>
         <div className="flashCard">
             {cardData && cardData.map((card, index) => (
                 <div className="fullCard" id={index} key={index} onClick={e => handleClick(index, e)}>
