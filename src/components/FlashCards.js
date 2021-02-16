@@ -71,9 +71,21 @@ const setToggleAll = (toggleSetting) => {
 }
 
     return (
-        <div className="flashCard"><div className="categoryBarContainer"><CategoryBar /></div>
-            <div className="toggleAll"><button id="toggleBtn" onClick={e => setToggleAll('off')}>Toggle All Off</button>
-            <button id="toggleBtn" onClick={e => setToggleAll('on')}>Toggle All On</button></div>
+        <div className="wrapper">
+            <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="#">Spanish</a>
+        </li>
+        <li>
+          <a href="#">Add Card</a>
+        </li>
+        </ul>
+        </nav>
+        
+
+        <CategoryBar />
+        <div className="flashCard">
             {cardData && cardData.map((card, index) => (
                 <div className="fullCard" id={index} key={index} onClick={e => handleClick(index, e)}>
                 <div className="cardItem"><h2>{card.spanish}</h2></div>
@@ -84,6 +96,7 @@ const setToggleAll = (toggleSetting) => {
             ))}
 
         
+    </div>
     </div>
     )
 }

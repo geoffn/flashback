@@ -18,10 +18,10 @@ export default function CategoryBar() {
 
     
     return(
-        <div className="categoryBar"><a href="/addcard" alt="add card" key="add">Add New</a>
-            <p>Spanish</p><a href='/' key="all">all</a>
+        <div className="categoryBarContainer">
+            <div className="categoryBar"><a href="/" key="all">All</a></div>
             {catData && catData.map((category, index) => (
-                <p><a href={`/?cat=`+category} key={category}>{category}</a></p>
+                <div className="categoryBar"><a href={`/?cat=`+category} key={category}>{category}</a></div>
             ))}
         </div>
 
