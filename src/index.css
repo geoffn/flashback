@@ -219,3 +219,8 @@ code {
     grid-template-columns: repeat(2, 100px);
   }
 }
+@media (max-width: 900px) {
+  .categoryBarContainer {
+    grid-template-columns: repeat(4, 100px);
+  }
+}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router"
 import axios from 'axios'
 
 
@@ -20,9 +19,9 @@ export default function CategoryBar() {
     
     return(
         <div className="categoryBarContainer">
-            <div className="categoryBar"><a href="/" key="all">All</a></div>
+            <div className="categoryBar"><a href="/" key="all" alt="All words">All</a></div>
             {catData && catData.map((category, index) => (
-                <div className="categoryBar"><a href={`/?cat=`+category} key={category}>{category}</a></div>
+                <div className="categoryBar"><a href={`/?cat=`+category} key={category} alt={category}>{category}</a></div>
             ))}
         </div>
 

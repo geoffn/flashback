@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router"
 import axios from 'axios'
 import anime from 'animejs'
 
@@ -40,12 +39,12 @@ export default function FlashCards(props) {
     useEffect(() => {
         var baseURL = 'https://flashbackv1api.herokuapp.com/card'
         if (props.location.search.length > 1){
-            console.log(props.location.search.length)
+            // console.log(props.location.search.length)
             var categoryString = querystring.parse(props.location.search)
         
-            console.log(categoryString)
-            var baseURL = 'https://flashbackv1api.herokuapp.com/cardcat/' + categoryString.cat
-            console.log(baseURL)
+            // console.log(categoryString)
+            baseURL = 'https://flashbackv1api.herokuapp.com/cardcat/' + categoryString.cat
+            // console.log(baseURL)
         }
 
         //If search criteria is provided then search
@@ -53,32 +52,32 @@ export default function FlashCards(props) {
         axios.get(baseURL).then((data) => setCardData(data.data.results))
             .catch(console.error)
 
-    }, [])
+    }, [props.location.search])
 
 
 
 
-const setToggleAll = (toggleSetting) => {
-    const answerCards = document.querySelectorAll('.cardAnswer')
-    console.log(answerCards)
-    if(toggleSetting === 'off'){
-    answerCards.forEach(ac => ac.classList.remove('toggled'))
-    }else
-    {
-        answerCards.forEach(ac => ac.classList.add('toggled'))
-    }
+// const setToggleAll = (toggleSetting) => {
+//     const answerCards = document.querySelectorAll('.cardAnswer')
+//     console.log(answerCards)
+//     if(toggleSetting === 'off'){
+//     answerCards.forEach(ac => ac.classList.remove('toggled'))
+//     }else
+//     {
+//         answerCards.forEach(ac => ac.classList.add('toggled'))
+//     }
 
-}
+// }
 
     return (
         <div className="wrapper">
-            <nav class="main-nav">
+            <nav className="main-nav">
       <ul>
         <li>
-          <a href="#">Spanish</a>
+          <a href="/" alt="Spanish to English">Spanish to English</a>
         </li>
         <li>
-          <a href="#">Add Card</a>
+          <a href="/addcard" alt="Add Card">Add Card</a>
         </li>
         </ul>
         </nav>
@@ -88,9 +87,9 @@ const setToggleAll = (toggleSetting) => {
         <div className="flashCard">
             {cardData && cardData.map((card, index) => (
                 <div className="fullCard" id={index} key={index} onClick={e => handleClick(index, e)}>
-                <div className="cardItem"><h2>{card.spanish}</h2></div>
+                <div className="cardItem"><h2>{card.primary_word}</h2></div>
                 <div className="cardAnswer">
-                    <h2>{card.english}</h2>
+                    <h2>{card.secondary_word}</h2>
                 </div>
                 </div>
             ))}
