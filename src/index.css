@@ -167,6 +167,7 @@ code {
 }
 .addCard {
   background-color: var(--main_background);
+  margin-top: 20px;
   justify-items: center;
   align-items: center;
   border: 5px solid var(--main_background);
@@ -176,10 +177,12 @@ code {
   text-align: center;
   cursor: pointer;
   height: auto;
-  width: 200px;
+  width: 100%;
   box-shadow: var(--shadow);
 }
 .navbar {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  display: grid;
   background-color: var(--main_background);
   justify-items: center;
   align-items: center;
@@ -209,6 +212,9 @@ code {
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+}
+.form_header {
+  font-size: 2rem;
 }
 .nav_active {
   color: #000000;

@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css';
 import FlashCards from './components/FlashCards'
 import AddCards from './components/AddCards'
-import EditCategories from './components/EditCategories'
+import AddCardSets from './components/AddCardSets'
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
             <Switch>
                 <Route path="/" exact component={FlashCards} />
                 <Route path="/addcard" component={AddCards} />
-                <Route path="/AddEvent" component={EditCategories} />
+                <Route path="/addcardset" component={AddCardSets} />
             </Switch>
         </Router>
   );

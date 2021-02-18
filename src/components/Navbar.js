@@ -1,23 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
     return (
-        <header>
-            <div className="navbar">
-                <nav className="flex">
-                    <NavLink to="/" exact
-                    activeClassName="nav_active"
-                    >
-                        Flash Cards
-                    </NavLink>
-                    <NavLink to="/resume"
-                        activeClassName="nav_active"
-                        >
-                        Add Card
-                </NavLink>
-                </nav>
+
+            <div className="categoryBarContainer">
+                    <div className="categoryBar"><a href="/" alt="Flash Cards">
+                        Flash Cards</a>
+                    </div>
+                    <div className="categoryBar"><a href="/cardsets" alt="Card Sets">Card Sets</a></div>
+                    <div className="categoryBar"><a href="/addcard" alt="Add Cards">Add Cards</a></div>
+                
             </div>
-        </header >
+
     )
 }
