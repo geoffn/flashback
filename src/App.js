@@ -4,6 +4,7 @@ import './App.css';
 import FlashCards from './components/FlashCards'
 import AddCards from './components/AddCards'
 import AddCardSets from './components/AddCardSets'
+import CardSetEdit from './components/CardSetEdit'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/" exact component={FlashCards} />
                 <Route path="/addcard" component={AddCards} />
                 <Route path="/addcardset" component={AddCardSets} />
+                <Route path="/cardsetedit" component={CardSetEdit} />
             </Switch>
         </Router>
   );
