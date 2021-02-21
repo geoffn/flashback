@@ -12,9 +12,11 @@ const querystring = require('query-string')
 export default function CardSets(props) {
 
     const [currentCardSetId] = useState(querystring.parse(props.location.search).id)
+    const [cardsAdded, setCardsAdded] = useState(0)
 
-
- 
+    function forceCardsAdded(){
+        setCardsAdded(cardsAdded => cardsAdded + 1)
+    }
 
  
    
@@ -22,11 +24,11 @@ export default function CardSets(props) {
         <div className="wrapper">
              {<AddCards />}
             
-            {<AssignedCards cardSetId={currentCardSetId} />}
+            {<AssignedCards cardSetId={currentCardSetId} cardsAdded={cardsAdded}/>}
 
            
   
-            {<AvailableCards cardSetId={currentCardSetId} />}
+            {<AvailableCards cardSetId={currentCardSetId} forceCardsAdded={forceCardsAdded}/>}
 
         
         </div>

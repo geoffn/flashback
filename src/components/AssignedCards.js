@@ -6,18 +6,18 @@ export default function AssignedCards(props) {
     const [cardSetData, setCardSetData] = useState([])
     const [currentCardSetId] = useState(props.cardSetId)
 
-    console.log("cardset=" + currentCardSetId)
-    
+    console.log("CardsAdded:" + props.cardsAdded)
 
     useEffect(() => {
 
+        console.log(props.cardsAdded)
         var baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + currentCardSetId
         console.log(baseURL)
         axios.get(baseURL).then((data) => usedSetData(data.data.results))
             .catch(console.error)
        
 
-    }, [currentCardSetId])
+    }, [currentCardSetId, props.cardsAdded])
 
     //Create a list of individual cards from the cardset array of cards.
     function usedSetData(cardSetsPre){
@@ -48,7 +48,32 @@ export default function AssignedCards(props) {
     
     function removeCard(cardSet, card) {
         //call remove card api
-        console.log("cards " + cardSet, card)
+            //call remove card api
+            console.log("cards " + cardSet, card)
+            //     console.log(req.body.cardId)
+            // console.log(req.body.cardSetId)
+                const postData = {
+                    cardId : card,
+                    cardSetId : cardSet
+                }
+                var baseURL = 'https://flashbackv1api.herokuapp.com/cardsetremovecard'
+            axios({
+                method: 'post',
+                url: baseURL,
+                data: postData,
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            }).then(() => {
+                //
+                 baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + currentCardSetId
+        console.log(baseURL)
+        axios.get(baseURL).then((data) => usedSetData(data.data.results))
+            .catch(console.error)
+            })
+           
     }
    
     return (

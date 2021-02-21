@@ -41,9 +41,10 @@ export default function AvailableCards(props) {
         }
     }).then(() => {
         console.log("submitted: " )
-        
+        props.forceCardsAdded()
     })
-        
+    
+       
        
     }
     return (
