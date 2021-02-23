@@ -14,11 +14,12 @@ function App() {
     <Router>
 
             <Switch>
-                <Route path="/" exact component={FlashCards} />
+                <Route path="/" exact component={CardSets} />
                 <Route path="/addcard" component={AddCards} />
                 <Route path="/cardsets" component={CardSets} />
                 <Route path="/cardsetedit" component={CardSetEdit} />
                 <Route path="/cardsetview" component={CardSetView} />
+
             </Switch>
         </Router>
   );

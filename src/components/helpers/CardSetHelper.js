@@ -2,17 +2,17 @@
 import axios from 'axios'
 
 export async function removeCard(cardSet, card) {
-        //call remove card api
-            //call remove card api
-            console.log("cards " + cardSet, card)
-            //     console.log(req.body.cardId)
-            // console.log(req.body.cardSetId)
-                const postData = {
-                    cardId : card,
-                    cardSetId : cardSet
-                }
-                var baseURL = 'https://flashbackv1api.herokuapp.com/cardsetremovecard'
-            try{
+        //Removes a specific card from the provided cardset
+        //Takes cardSet which is the ID for the carset
+        //and the card which is the id fof the card.
+
+
+        const postData = {
+            cardId : card,
+            cardSetId : cardSet
+        }
+        var baseURL = 'https://flashbackv1api.herokuapp.com/cardsetremovecard'
+        try{
                 const callResponse = axios({
                 method: 'post',
                 url: baseURL,
@@ -51,7 +51,21 @@ export async function getCardsForCardset(cardSet){
         console.log(baseURL)
         const responseData = await axios.get(baseURL)
 
-    console.log(responseData.data)
+    console.log(responseData.data.results)
+
+    return responseData.data.results
+}
+
+
+export async function getAllCardSetsForUser(userId){
+    //Pulls all the card set data for a specific user
+    //TODO: Need to add userid info
+
+    const baseURL = 'https://flashbackv1api.herokuapp.com/cardset'
+    console.log(baseURL)
+    const responseData = await axios.get(baseURL)
+
+    console.log(responseData.data.results)
 
     return responseData.data.results
 }

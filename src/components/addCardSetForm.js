@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 
-export default function AddCardSetForm(){
+export default function AddCardSetForm(props){
 
 //formik setup
     const initialValues = {
@@ -36,7 +36,9 @@ export default function AddCardSetForm(){
             }
         }).then(() => {
             console.log("submitted: " + submitProps)
+            props.forceCardsAdded()
             submitProps.resetForm()
+            
         })        
     }
 
