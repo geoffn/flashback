@@ -27,7 +27,7 @@ export default function CardSets(props) {
 
                     <p>Cards: {cardSet.cards.length}</p>
 
-                    <a href={'/cardsetedit?id=' + cardSet._id} alt="View Edit Card Set" >View/Edit</a>
+                    <a href={'/cardsetview?id=' + cardSet._id} alt="View Edit Card Set" >View/Edit</a>
                 
                 </div>
             ))}

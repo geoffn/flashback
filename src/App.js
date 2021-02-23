@@ -6,7 +6,7 @@ import AddCards from './components/AddCards'
 import AddCardSets from './components/AddCardSets'
 import CardSetEdit from './components/CardSetEdit'
 import CardSets from './components/CardSets'
-
+import CardSetView from './components/cardSetView'
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
                 <Route path="/addcard" component={AddCards} />
                 <Route path="/cardsets" component={CardSets} />
                 <Route path="/cardsetedit" component={CardSetEdit} />
+                <Route path="/cardsetview" component={CardSetView} />
             </Switch>
         </Router>
   );

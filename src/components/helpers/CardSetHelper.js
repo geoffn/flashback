@@ -25,6 +25,7 @@ export async function removeCard(cardSet, card) {
             })
 
             console.log(callResponse)
+            return callResponse
             }catch{
                 console.log("error")
             }
@@ -42,4 +43,15 @@ export async function updateAssignedCards(cardSet){
     return responseData.data
     // })
     //         .catch(console.error)
+}
+
+
+export async function getCardsForCardset(cardSet){
+    const baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + cardSet
+        console.log(baseURL)
+        const responseData = await axios.get(baseURL)
+
+    console.log(responseData.data)
+
+    return responseData.data.results
 }
