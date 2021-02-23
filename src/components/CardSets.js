@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
+import NavBar from './Navbar'
 
 
 export default function CardSets(props) {
@@ -15,6 +16,8 @@ export default function CardSets(props) {
     }, [])
 
     return (
+        <div className="wrapper">
+            <NavBar />
         <div className="flashCard">
             {cardSetData && cardSetData.map((cardSet, index) => (
                 <div className="fullCard" id={index} key={index}>
@@ -28,7 +31,7 @@ export default function CardSets(props) {
                 
                 </div>
             ))}
-
+        </div>
         
         </div>
     )

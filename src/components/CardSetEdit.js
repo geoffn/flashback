@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import AddCards from "./AddCards"
 import AvailableCards from "./AvailableCards"
 import AssignedCards from "./AssignedCards"
+import NavBar from "./Navbar"
 
 
 const querystring = require('query-string')
@@ -22,7 +23,9 @@ export default function CardSets(props) {
    
     return (
         <div className="wrapper">
-             {<AddCards />}
+            <NavBar />
+
+             {<AddCards cardSetId={currentCardSetId} forceCardsAdded={forceCardsAdded}/>}
             
             {<AssignedCards cardSetId={currentCardSetId} cardsAdded={cardsAdded}/>}
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -12,8 +12,9 @@ const cardForm = {
     OwnerId: '000000000000000000000000'
 }
 
-export default function AddCards() {
-    
+export default function AddCards(props) {
+    const [currentCardSetId] = useState(props.cardSetId)
+
     const initialValues = {
             primary_word: '',
             secondary_word: '',
@@ -37,7 +38,7 @@ export default function AddCards() {
         const baseURL = 'https://flashbackv1api.herokuapp.com/card'
 
         console.log(formJSON)
-        axios({
+        const newCard =await axios({
             method: 'post',
             url: baseURL,
             data: formJSON,
@@ -46,10 +47,28 @@ export default function AddCards() {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
             }
-        }).then(() => {
-            console.log("submitted: " + submitProps)
-            submitProps.resetForm()
         })
+        let postData = {
+            cardId : newCard.data._id,
+            cardSetId : currentCardSetId
+        }
+
+        console.log(JSON.stringify(postData))
+        const baseCardURL = 'https://flashbackv1api.herokuapp.com/cardsetaddcard'
+        axios({
+            method: 'post',
+            url: baseCardURL,
+            data: postData,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+           
+        }
+    })
+        submitProps.resetForm()
+        props.forceCardsAdded()
+        window.location.reload(true)
     }
     
     return (
