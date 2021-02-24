@@ -56,6 +56,18 @@ code {
   border: 5px;
   padding-top: 10px;
 }
+.addCardForm {
+  display: grid;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+  height: auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  text-align: center;
+  border: 5px;
+  padding-top: 10px;
+}
 .categoryBarContainer {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   display: grid;
