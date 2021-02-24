@@ -29,7 +29,8 @@ export default function CardSets(props) {
             console.log("data:" + data)
             const nav = [{
                 linkText: data[0].set_name,
-                linkAnchor: "/cardsetedit?id=" + currentCardSetId
+                linkAnchor: "/cardsetedit?id=" + currentCardSetId,
+                linkFunction: "Edit"
             }]
             setNavBarLinks(nav)
         })

@@ -1,0 +1,50 @@
+{
+    "short_name": "MyLearningCards",
+    "name": "My learning cards",
+    "icons": [
+      {
+        "src": "/public/img/android-chrome-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/android-chrome-256x256.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#c7ffd8",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#c7ffd8",
+    "shortcuts": [
+      {
+        "name": "My Card Sets?",
+        "short_name": "MyCards",
+        "description": "BrowsecardSets",
+        "url": "/?source=pwa",
+        "icons": [{ "src": "/img/android-chrome-192x192.png", "sizes": "192x192" }]
+      },
+      {
+        "name": "How's weather tomorrow?",
+        "short_name": "Tomorrow",
+        "description": "View weather information for tomorrow",
+        "url": "/tomorrow?source=pwa",
+        "icons": [{ "src": "/images/tomorrow.png", "sizes": "192x192" }]
+      }
+    ],
+    "description": "Weather forecast information",
+    "screenshots": [
+      {
+        "src": "/images/screenshot1.png",
+        "type": "image/png",
+        "sizes": "540x720"
+      },
+      {
+        "src": "/images/screenshot2.jpg",
+        "type": "image/jpg",
+        "sizes": "540x720"
+      }
+    ]
+  }

@@ -46,7 +46,8 @@ code {
 
 .flashCard {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   height: auto;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -56,7 +57,7 @@ code {
   padding-top: 10px;
 }
 .categoryBarContainer {
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   display: grid;
   grid-gap: 20px;
   padding: 0;
@@ -232,7 +233,7 @@ code {
   color: #000000;
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .categoryBarContainer {
     grid-template-columns: repeat(2, 100px);
   }
@@ -241,4 +242,4 @@ code {
   .categoryBarContainer {
     grid-template-columns: repeat(4, 100px);
   }
-}
+} */

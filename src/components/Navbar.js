@@ -41,7 +41,7 @@ export default function Navbar(props) {
                     <div className="categoryBar"><a href="/" alt="My Card Sets">
                         My Card Sets</a></div>
                     {navLinks && navLinks.map((links, index) => (
-                        <div className="categoryBar" key={index}><a href={links.linkAnchor} alt={"Edit " + links.linkText}>Edit: {links.linkText}</a></div>
+                        <div className="categoryBar" key={index}><a href={links.linkAnchor} alt={links.linkFunction + " : " + links.linkText}>{links.linkFunction + " : " + links.linkText}</a></div>
                     ))}
                    
                     

@@ -1,25 +1,50 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MyLearningCards",
+  "name": "My learning cards",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "/img/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/img/android-chrome-256x256.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?source=pwa",
+  "background_color": "#c7ffd8",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "scope": "/",
+  "theme_color": "#c7ffd8",
+  "shortcuts": [
+    {
+      "name": "My Card Sets?",
+      "short_name": "MyCards",
+      "description": "BrowsecardSets",
+      "url": "/?source=pwa",
+      "icons": [{ "src": "/img/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "How's weather tomorrow?",
+      "short_name": "Tomorrow",
+      "description": "View weather information for tomorrow",
+      "url": "/tomorrow?source=pwa",
+      "icons": [{ "src": "/images/android-chrome-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "description": "Weather forecast information",
+  "screenshots": [
+    {
+      "src": "/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "/images/screenshot2.jpg",
+      "type": "image/jpg",
+      "sizes": "540x720"
+    }
+  ]
 }
