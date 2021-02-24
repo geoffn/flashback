@@ -69,7 +69,7 @@ code {
   padding-top: 10px;
 }
 .categoryBarContainer {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 300px repeat(auto-fit, minmax(200px, 1fr));
   display: grid;
   grid-gap: 20px;
   padding: 0;
@@ -88,6 +88,17 @@ code {
   cursor: pointer;
   height: auto;
   box-shadow: var(--shadow);
+}
+.categoryBar.logo {
+  background-color: var(--secondary_card_text);
+  border: 5px solid var(--secondary_card_text);
+  color: var(--main_background);
+  font-size: 1.5rem;
+  cursor: default;
+}
+.categoryBar.logo img {
+  padding-right: 10px;
+  cursor: auto;
 }
 .categoryBar a {
   text-decoration: none;
