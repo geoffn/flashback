@@ -100,8 +100,8 @@ export default function AddCards(props) {
                         <p><ErrorMessage name='secondary_error' /></p>
                         
                         < Field name="wordType"  component="select" placeholder="Type" className="addcard_textfield">
-                            <option value="verb" selected>Verb</option>
-                            <option value="noun" selected>Noun</option>
+                            <option value="verb" defaultValue>Verb</option>
+                            <option value="noun" >Noun</option>
                             <option value="adjective">Adjective</option>
                         </Field >    
                         <p><ErrorMessage name="wordType" className="input-error" /></p>

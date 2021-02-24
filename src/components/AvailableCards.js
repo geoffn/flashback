@@ -50,7 +50,7 @@ export default function AvailableCards(props) {
     return (
         <div className="flashCard">
             {availableCards && availableCards.map((cardSet, index) => (
-                <div className="fullCard" id={index} key={index}>
+                <div className="fullCardSet" id={index} key={index}>
                     <h2>Available Card</h2>
                     <h2>{cardSet.set_name}</h2>
                 

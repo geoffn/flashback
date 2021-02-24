@@ -33,8 +33,7 @@ const handleClick = (key, e) => {
 
 export default function ViewCardSetCards(props) {
     const [cardData, setCardData] = useState();
-    const [cardListData, setCardListData] = useState();
-    const [cardSet] = useState(props.cardSetId)
+    const [cardSet] = useState('602dabe70ae7f10d81ba310d')
     
     useEffect(() => {
 
@@ -43,7 +42,6 @@ export default function ViewCardSetCards(props) {
             console.log(callResponse)
             await setCardData(callResponse)
             console.log(cardSet)
-            await setCardListData(callResponse[0].cards)
 
         }
         
@@ -57,16 +55,17 @@ export default function ViewCardSetCards(props) {
 
       <div className="flashCard">
           
-            {cardListData && cardListData.map((cardList, index) => (
-                
+            {cardData && cardData.map((cardList, index) => (
+                <div><div>{cardList.set_name}</div><div>{cardList.set_description}</div><div><a href={'/cardsetedit?id=' + cardList._id}>Edit Card</a> </div>
+                {cardList.cards && cardList.cards.map((card, index) => (
                 <div className="fullCard" id={index} key={index} onClick={e => handleClick(index, e)}>
-                <div className="cardItem">{cardList.primary_word}</div>
-                <div className="cardAnswer">
-                    {cardList.secondary_word}
+                <span className="cardItem"><h2>{card.primary_word}</h2></span>
+                <span className="cardAnswer">
+                    <h2>{card.secondary_word}</h2>
+                </span>
                 </div>
+                ))}
                 </div>
-               
-              
             ))}
 
         

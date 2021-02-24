@@ -5,6 +5,7 @@ import { getAllCardSetsForUser } from "./helpers/CardSetHelper"
 import AddCardSetForm from './addCardSetForm'
 
 
+
 export default function CardSets(props) {
 
     const [cardSetData, setCardSetData] = useState(null)
@@ -37,7 +38,7 @@ export default function CardSets(props) {
             <AddCardSetForm forceCardsAdded={forceCardsAdded}/>
         <div className="flashCard">
             {cardSetData && cardSetData.map((cardSet, index) => (
-                <div className="fullCard" id={index} key={index}>
+                <div className="fullCardSet" id={index} key={index}>
                     <h2>{cardSet.set_name}</h2>
                 
                     <p>{cardSet.set_description}</p>
