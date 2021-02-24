@@ -28,10 +28,10 @@ export default function Navbar(props) {
                 "__v": 0
                 }
             ]
-        setNavLinks(nav)
+        setNavLinks(props.navBarLinks)
         console.log(navLinks)
         console.log(props.navBarLinks + "props")
-    }, [])
+    }, [props.navBarLinks])
             
         
 
@@ -41,9 +41,9 @@ export default function Navbar(props) {
                     <div className="categoryBar"><a href="/" alt="My Card Sets">
                         My Card Sets</a></div>
                     {navLinks && navLinks.map((links, index) => (
-                        <div className="categoryBar" key={index}>test{links.linkText}</div>
+                        <div className="categoryBar" key={index}><a href={links.linkAnchor} alt={"Edit " + links.linkText}>Edit: {links.linkText}</a></div>
                     ))}
-                    <div className="categoryBar"></div>
+                   
                     
                 
             </div>

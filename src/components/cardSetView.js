@@ -22,14 +22,25 @@ export default function CardSets(props) {
     function forceCardsAdded(){
         setCardsAdded(cardsAdded => cardsAdded + 1)
     }
-    // getCardsForCardset(currentCardSetId).then((data) => {
-    //     setCardData(data)
-    // })
+    
+    useEffect(() => {
+        console.log("card:" + currentCardSetId)
+        getCardsForCardset(currentCardSetId).then((data)=> {
+            console.log("data:" + data)
+            const nav = [{
+                linkText: data[0].set_name,
+                linkAnchor: "/cardsetedit?id=" + currentCardSetId
+            }]
+            setNavBarLinks(nav)
+        })
+      
+    }, [])
 
+    
    
     return (
         <div className="wrapper">
-            <NavBar  />
+            <NavBar navBarLinks={navBarLinks} />
 
              
             <ViewCardSetCards cardSetId={currentCardSetId} cardsAdded={cardsAdded}/>
