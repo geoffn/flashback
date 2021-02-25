@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import axios from 'axios'
 import anime from 'animejs'
 import NavBar from './Navbar'
 import { getCardsForCardset } from './helpers/CardSetHelper'
