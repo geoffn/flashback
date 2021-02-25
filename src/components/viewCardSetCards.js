@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import anime from 'animejs'
-import NavBar from './Navbar'
 import { getCardsForCardset } from './helpers/CardSetHelper'
 
 let playing = false
@@ -31,7 +30,7 @@ const handleClick = (key, e) => {
 
 
 export default function ViewCardSetCards(props) {
-    const [cardData, setCardData] = useState();
+    
     const [cardListData, setCardListData] = useState();
     const [cardSet] = useState(props.cardSetId)
     
@@ -39,16 +38,14 @@ export default function ViewCardSetCards(props) {
 
         async function populateCardData() {
             const callResponse = await getCardsForCardset(cardSet)
-            console.log(callResponse)
-            await setCardData(callResponse)
-            console.log(cardSet)
+            
             await setCardListData(callResponse[0].cards)
 
         }
         
         populateCardData()
 
-    }, [])
+    }, [cardSet])
 
 
 
