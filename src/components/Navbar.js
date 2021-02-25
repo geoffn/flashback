@@ -38,7 +38,7 @@ export default function Navbar(props) {
     return (
 
             <div className="categoryBarContainer">
-                <div className="categoryBar logo"><img src="/img/favicon-32X32.png" alt="My Learning Cards"></img>My Learning Cards</div>
+                <div className="categoryBar logo"><img src="/img/mlmain.png" alt="My Learning Cards"></img>My Learning Cards</div>
                 
                     <div className="categoryBar"><a href="/" alt="My Card Sets">
                         My Card Sets</a></div>
