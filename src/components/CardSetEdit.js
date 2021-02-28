@@ -20,7 +20,7 @@ export default function CardSets(props) {
         setCardsAdded(cardsAdded => cardsAdded + 1)
     }
     useEffect(() => {
-        console.log("card:" + currentCardSetId)
+        //console.log("card:" + currentCardSetId)
         getCardsForCardset(currentCardSetId).then((data)=> {
             console.log("data:" + data)
             const nav = [{
@@ -31,7 +31,7 @@ export default function CardSets(props) {
             setNavBarLinks(nav)
         })
       
-    }, [])
+    }, [currentCardSetId])
  
    
     return (

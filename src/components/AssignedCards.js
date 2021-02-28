@@ -6,15 +6,15 @@ import { removeCard, updateAssignedCards } from './helpers/CardSetHelper'
 export default function AssignedCards(props) {
 
     const [cardSetData, setCardSetData] = useState([])
-    const [currentCardSetId, setCurrentCardSetId] = useState(props.cardSetId)
+    const [currentCardSetId] = useState(props.cardSetId)
     const [rerender, setRerender] = useState(0)
-    console.log("CardsAdded:" + props.cardsAdded)
+    //console.log("CardsAdded:" + props.cardsAdded)
 
     useEffect(() => {
 
-        console.log('rerender:' + rerender)
+        //console.log('rerender:' + rerender)
         var baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + currentCardSetId
-        console.log(baseURL)
+        //console.log(baseURL)
         axios.get(baseURL).then((data) => usedSetData(data.data.results))
             .catch(console.error)
        
@@ -23,7 +23,7 @@ export default function AssignedCards(props) {
 
     //Create a list of individual cards from the cardset array of cards.
     function usedSetData(cardSetsPre){
-        console.log(cardSetsPre)
+        //console.log(cardSetsPre)
         var cardsUsed = []
         cardSetsPre.map((cardSet, index) => (
                 cardSet.cards.map((card, index) => {
@@ -56,35 +56,7 @@ export default function AssignedCards(props) {
         }
         setRerender(rerender => (rerender + 1))
     }
-    // function removeCard(cardSet, card) {
-    //     //call remove card api
-    //         //call remove card api
-    //         console.log("cards " + cardSet, card)
-    //         //     console.log(req.body.cardId)
-    //         // console.log(req.body.cardSetId)
-    //             const postData = {
-    //                 cardId : card,
-    //                 cardSetId : cardSet
-    //             }
-    //             var baseURL = 'https://flashbackv1api.herokuapp.com/cardsetremovecard'
-    //         axios({
-    //             method: 'post',
-    //             url: baseURL,
-    //             data: postData,
-    //             headers: {
-    //                 Accept: 'application/json',
-    //                 'Content-Type': 'application/json',
-    //                 "Access-Control-Allow-Origin": "*",
-    //             }
-    //         }).then(() => {
-    //             //
-    //              baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + currentCardSetId
-    //     console.log(baseURL)
-    //     axios.get(baseURL).then((data) => usedSetData(data.data.results))
-    //         .catch(console.error)
-    //         })
-           
-    // }
+    
    
     return (
         <div className="flashCard">

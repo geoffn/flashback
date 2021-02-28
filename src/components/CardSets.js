@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import axios from 'axios'
 import NavBar from './Navbar'
 import { getAllCardSetsForUser } from "./helpers/CardSetHelper"
 import AddCardSetForm from './addCardSetForm'
@@ -23,9 +22,9 @@ export default function CardSets(props) {
 
         async function populateCardData() {
             const callResponse = await getAllCardSetsForUser()
-            console.log(callResponse)
+            //console.log(callResponse)
             await setCardSetData(callResponse)
-            console.log(cardSetData)
+            //console.log(cardSetData)
 
         }
         

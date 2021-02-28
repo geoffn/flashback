@@ -22,7 +22,7 @@ export default function AvailableCards(props) {
     
     function addCardToSet(cardSet, card) {
         //call remove card api
-        console.log("cards " + cardSet, card)
+        //console.log("cards " + cardSet, card)
     //     console.log(req.body.cardId)
     // console.log(req.body.cardSetId)
         const postData = {
@@ -40,7 +40,7 @@ export default function AvailableCards(props) {
             "Access-Control-Allow-Origin": "*",
         }
     }).then(() => {
-        console.log("submitted: " )
+        //console.log("submitted: " )
         props.forceCardsAdded()
     })
     
@@ -58,7 +58,7 @@ export default function AvailableCards(props) {
 
                     <p>{cardSet.secondary_word}</p>
 
-                    <p><button onClick={() => addCardToSet(currentCardSetId,cardSet._id)}>Add Card {console.log(currentCardSetId)}</button></p>
+                    <p><button onClick={() => addCardToSet(currentCardSetId,cardSet._id)}>Add Card</button></p>
                 
                 </div>
             ))}

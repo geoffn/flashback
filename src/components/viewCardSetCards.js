@@ -10,9 +10,9 @@ const handleClick = (key, e) => {
     return;
   
   playing = true;
-    console.log(key)
+    //console.log(key)
     var divNode = document.getElementById(key)
-    console.log(divNode)
+    //console.log(divNode)
     
     anime({
         targets: divNode,
