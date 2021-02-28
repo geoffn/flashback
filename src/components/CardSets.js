@@ -34,9 +34,9 @@ export default function CardSets(props) {
     return (
         <div className="wrapper">
             <NavBar />
-            <div className="addCardForm">
+            
             <AddCardSetForm forceCardsAdded={forceCardsAdded}/>
-            </div>
+            
         <div className="flashCard">
             {cardSetData && cardSetData.map((cardSet, index) => (
                 <div className="fullCardSet" id={index} key={index}>
