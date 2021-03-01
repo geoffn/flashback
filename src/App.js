@@ -8,7 +8,7 @@ import CardSetView from './components/cardSetView'
 import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { getAuthConfig } from './components/helpers/ConfigHelper'
-import { loginUserByUID } from './components/helpers/UserHelper'
+import { loginUserByUID, loginAndRegisterNewUser } from './components/helpers/UserHelper'
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -45,12 +45,29 @@ function App() {
     try{
       firebase.auth().onAuthStateChanged(user => {
           //console.log(firebase.auth().currentUser)
-    
+        console.log("AUTHSTATECHANGED")
           setIsSignedIn(!!user)
           setFirebaseReady(true)
-          loginUserByUID(firebase.auth().currentUser.providerData[0].uid)
+          loginUserByUID(firebase.auth().currentUser.providerData[0].uid).then((data) => {
+            console.log(data)
+            if (data.length){
+              console.log("UID Set - Welcome Back")
+            }else{
+              //USER ID not found.  New User
+              loginAndRegisterNewUser(firebase.auth().currentUser).then((data) => {console.log(data)})
+            }
+            
+          })
+          // console.log(loginData)
+          //   if (loginData.uid){
+          //     console.log("App User Exists:" + loginData.uid )
+          //   }
+          //   else{
+          //     console.log("New User")
+          //   }
+      })
           
-        })
+        
       }catch(e){
         console.log("error auth" + e)
       }

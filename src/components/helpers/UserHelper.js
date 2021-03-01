@@ -7,20 +7,45 @@ export async function loginUserByUID(uid) {
         //console.log(baseURL)
     
     var responseData = await axios.get(baseURL)
-
+    console.log(responseData.data.results.length)
     //If user is found then update the last login date.
-    if (responseData.data) {
+    if (responseData.data.results.length) {
         const loginURL = 'https://flashbackv1api.herokuapp.com/loginuser/' + uid
         var loginData = await axios.get(loginURL)
         console.log("Login Date Set")
-    } else
-    {
-        console.log("NEW USER" + uid)
-    }
+        return responseData.data.results
+    } 
     //console.log(responseData.data.results)
     //     await axios.get(baseURL).then((data) => {
         //console.log("user:" + JSON.stringify(data.data.results))
-    return responseData.data.results
+    return []
            
     }
 
+export async function loginAndRegisterNewUser(user){
+    console.log("New User Registration")
+    const newUser = {
+        uid: user.providerData[0].uid,
+        display_name: user.providerData[0].display_name,
+        email: user.providerData[0].email,
+        photo_url: user.providerData[0].photoURL,
+        phone: user.providerData[0].phoneNumber,
+        provider: user.providerData[0].providerId,
+        last_login_date: new Date(),
+        level: 1
+    }
+    const baseURL = 'https://flashbackv1api.herokuapp.com/user' 
+    const createdUser = await axios({
+        method: 'post',
+        url: baseURL,
+        data: newUser,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+       
+    }
+})
+
+    return createdUser
+}
