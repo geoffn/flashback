@@ -61,7 +61,7 @@ export async function getAllCardSetsForUser(userId){
     //Pulls all the card set data for a specific user
     //TODO: Need to add userid info
 
-    const baseURL = 'https://flashbackv1api.herokuapp.com/cardset'
+    const baseURL = 'https://flashbackv1api.herokuapp.com/cardsetforowner/' + userId
     //console.log(baseURL)
     const responseData = await axios.get(baseURL)
 

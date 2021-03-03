@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import firebase from 'firebase'
 
 //Temp until cardsform has the correct data
 const cardForm = {
@@ -32,7 +33,7 @@ export default function AddCards(props) {
 
         values['primary_language'] = 'es'
         values['secondary_language'] = 'en'
-        values['OwnerId'] = '000000000000000000000000'
+        values['uid'] = firebase.auth().currentUser.providerData[0].uid
 
         const formJSON = JSON.stringify(values)
         const baseURL = 'https://flashbackv1api.herokuapp.com/card'
@@ -55,7 +56,7 @@ export default function AddCards(props) {
 
         console.log(JSON.stringify(postData))
         const baseCardURL = 'https://flashbackv1api.herokuapp.com/cardsetaddcard'
-        axios({
+        const callResponse = await axios({
             method: 'post',
             url: baseCardURL,
             data: postData,
@@ -66,6 +67,7 @@ export default function AddCards(props) {
            
         }
     })
+        console.log(callResponse)
         submitProps.resetForm()
         props.forceCardsAdded()
         window.location.reload(true)

@@ -13,7 +13,7 @@ export async function validateJWTCookie(jwtkey, guid){
         const decode = jwt.verify(jwtGUID,jwtkey)
         console.log("decode:" + JSON.stringify(decode))
         console.log("Cookie:" + cookieJWT.guid)
-            return decode
+        return decode
             
         }catch(err){
             console.log(err)

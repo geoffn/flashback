@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
-
+import firebase from 'firebase'
 
 //Get The Card Set and then get all cards not assigned to another set.
 
@@ -12,7 +12,7 @@ export default function AvailableCards(props) {
 
     useEffect(() => {
 
-        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card'   
+        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + firebase.auth().currentUser.providerData[0].uid   
         axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
             .catch(console.error)
 

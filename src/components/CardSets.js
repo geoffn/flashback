@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import NavBar from './Navbar'
 import { getAllCardSetsForUser } from "./helpers/CardSetHelper"
 import AddCardSetForm from './addCardSetForm'
-
+import firebase from 'firebase'
 
 
 export default function CardSets(props) {
@@ -21,7 +21,7 @@ export default function CardSets(props) {
         
 
         async function populateCardData() {
-            const callResponse = await getAllCardSetsForUser()
+            const callResponse = await getAllCardSetsForUser(firebase.auth().currentUser.providerData[0].uid)
             //console.log(callResponse)
             await setCardSetData(callResponse)
             //console.log(cardSetData)

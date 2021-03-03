@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import firebase from 'firebase'
 
 
 export default function AddCardSetForm(props){
@@ -17,7 +18,7 @@ export default function AddCardSetForm(props){
 
     const onSubmit = async (values, submitProps) => {
         
-        values['owner_id'] = '000000000000000000000000'
+        values['uid'] = firebase.auth().currentUser.providerData[0].uid
         console.log(values)
 
         const formJSON = JSON.stringify(values)
