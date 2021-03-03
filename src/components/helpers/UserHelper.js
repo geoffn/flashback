@@ -26,7 +26,7 @@ export async function loginAndRegisterNewUser(user){
     console.log("New User Registration")
     const newUser = {
         uid: user.providerData[0].uid,
-        display_name: user.providerData[0].display_name,
+        display_name: user.providerData[0].displayName,
         email: user.providerData[0].email,
         photo_url: user.providerData[0].photoURL,
         phone: user.providerData[0].phoneNumber,

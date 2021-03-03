@@ -20,8 +20,6 @@ function App() {
   const [cookies, setCookie] = useCookies(['guid'])
   const [jwtid, setjwtid] = useState()
 
-  //StyledFirebaseAuth component config
-  //Add other options for auth here
   const uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -37,41 +35,51 @@ function App() {
 
     async function populateFirebaseConfig(){
       const callResponse = await getAuthConfig()
+      //await setFireBaseConfig(callResponse)
+      setjwtid(callResponse.JWTKEY)
       const fireConfig = {
        
          apiKey: callResponse.AUTH_KEY,
          authDomain: callResponse.AUTH_DOMAIN
       }
-      //Initial Firebase if not already started
       if (!firebase.apps.length) {
         firebase.initializeApp(fireConfig);
         }
-      
-        setFirebaseReady(true)
+      //console.log(fireConfig)
+ 
+      const jwtUser = await validateJWTCookie(callResponse.JWTKEY, cookies)
+        
+          console.log("JWT User:" + jwtUser)
+        
       
     try{
       firebase.auth().onAuthStateChanged(user => {
           console.log(firebase.auth().currentUser)
-          // const codeUser = {
-          //   user: firebase.auth().currentUser.providerData[0].uid,
-          //   displayName:firebase.auth().currentUser.providerData[0].displayName
-          // }
-          console.log("AUTHSTATECHANGED")
+          const codeUser = {
+            user: firebase.auth().currentUser.providerData[0].uid,
+            displayName:firebase.auth().currentUser.providerData[0].displayName
+          }
+        console.log("AUTHSTATECHANGED")
           setIsSignedIn(!!user)
-          if(!!firebase.auth().currentUser){
-          //setCookie('guid', jwt.sign(codeUser,jwtid,{expiresIn:'1d'}),{ path: '/' })
+          setFirebaseReady(true)
+          setCookie('guid', jwt.sign(codeUser,'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYxNDY0MzExMCwiaWF0IjoxNjE0NjQzMTEwfQ.UQLQL86cAgeYwU78A3djiV9gc8eFQH9ZJ3RQCz3C-p8',{expiresIn:'1d'}),{ path: '/' })
           loginUserByUID(firebase.auth().currentUser.providerData[0].uid).then((data) => {
             console.log(data)
             if (data.length){
               console.log("UID Set - Welcome Back")
             }else{
               //USER ID not found.  New User
-              console.log("New User ")
               loginAndRegisterNewUser(firebase.auth().currentUser).then((data) => {console.log(data)})
             }
-          
+            
           })
-        }
+          // console.log(loginData)
+          //   if (loginData.uid){
+          //     console.log("App User Exists:" + loginData.uid )
+          //   }
+          //   else{
+          //     console.log("New User")
+          //   }
       })
           
         
