@@ -2,11 +2,11 @@ import React from 'react'
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import firebase from 'firebase'
-
+//import firebase from 'firebase'
+import { useCookies } from 'react-cookie'
 
 export default function AddCardSetForm(props){
-
+    const [cookies, setCookie] = useCookies(['uid'])
 //formik setup
     const initialValues = {
         set_name: '',
@@ -18,7 +18,7 @@ export default function AddCardSetForm(props){
 
     const onSubmit = async (values, submitProps) => {
         
-        values['uid'] = firebase.auth().currentUser.providerData[0].uid
+        values['uid'] = cookies.uid
         console.log(values)
 
         const formJSON = JSON.stringify(values)

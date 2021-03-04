@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import firebase from 'firebase'
+//import firebase from 'firebase'
+import { useCookies } from 'react-cookie'
 
 //Temp until cardsform has the correct data
 const cardForm = {
@@ -15,6 +16,7 @@ const cardForm = {
 
 export default function AddCards(props) {
     const [currentCardSetId] = useState(props.cardSetId)
+    const [cookies, setCookie] = useCookies(['guid'])
 
     const initialValues = {
             primary_word: '',
@@ -33,7 +35,7 @@ export default function AddCards(props) {
 
         values['primary_language'] = 'es'
         values['secondary_language'] = 'en'
-        values['uid'] = firebase.auth().currentUser.providerData[0].uid
+        values['uid'] = cookies.uid
 
         const formJSON = JSON.stringify(values)
         const baseURL = 'https://flashbackv1api.herokuapp.com/card'

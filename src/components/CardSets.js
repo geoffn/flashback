@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react"
 import NavBar from './Navbar'
 import { getAllCardSetsForUser } from "./helpers/CardSetHelper"
 import AddCardSetForm from './addCardSetForm'
-import firebase from 'firebase'
+//import firebase from 'firebase'
+import { useCookies } from 'react-cookie'
 
 
 export default function CardSets(props) {
 
     const [cardSetData, setCardSetData] = useState(null)
     const [cardsAdded, setCardsAdded] = useState(0)
+    const [cookies, setCookie] = useCookies(['uid'])
 
     function forceCardsAdded(){
         setCardsAdded(cardsAdded => cardsAdded + 1)
@@ -21,7 +23,7 @@ export default function CardSets(props) {
         
 
         async function populateCardData() {
-            const callResponse = await getAllCardSetsForUser(firebase.auth().currentUser.providerData[0].uid)
+            const callResponse = await getAllCardSetsForUser(cookies.uid)
             //console.log(callResponse)
             await setCardSetData(callResponse)
             //console.log(cardSetData)

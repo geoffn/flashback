@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
-import firebase from 'firebase'
-
+//import firebase from 'firebase'
+import { useCookies } from 'react-cookie'
 //Get The Card Set and then get all cards not assigned to another set.
 
 export default function AvailableCards(props) {
 
     const [availableCards, setAvailableCards] = useState([])
     const [currentCardSetId] = useState(props.cardSetId)
-    
+    const [cookies, setCookie] = useCookies(['uid'])
 
     useEffect(() => {
 
-        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + firebase.auth().currentUser.providerData[0].uid   
+        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + cookies.uid
         axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
             .catch(console.error)
 
