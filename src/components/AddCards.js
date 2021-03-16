@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 //import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
+import {getJWTUID} from './helpers/jwt'
 
 //Temp until cardsform has the correct data
 const cardForm = {
@@ -32,10 +33,10 @@ export default function AddCards(props) {
 
     const onSubmit = async (values, submitProps) => {
         console.log(JSON.stringify(values))
-
+        const UID = getJWTUID(cookies.uid)
         values['primary_language'] = 'es'
         values['secondary_language'] = 'en'
-        values['uid'] = cookies.uid
+        values['uid'] = UID
 
         const formJSON = JSON.stringify(values)
         const baseURL = 'https://flashbackv1api.herokuapp.com/card'

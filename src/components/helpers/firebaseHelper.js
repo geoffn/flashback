@@ -2,13 +2,22 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import {getAuthConfig} from './ConfigHelper'
 
-const config = {
-    apiKey: ,
-    authDomain: 
+
+async function getConfig(){
+const config = await getAuthConfig()
+const returnConfig = {
+    apiKey: config.AUTH_KEY,
+    authDomain: config.AUTH_DOMAIN 
 }
+return returnConfig
+}
+getConfig().then((config) => {
+    if (!firebase.apps.length) {
+        
+    firebase.initializeApp(config)
+    }
+})
 
 
-firebase.initializeApp(config)
-
-export const auth = firebase.auth()
+//export const auth = firebase.auth()
 

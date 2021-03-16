@@ -2,34 +2,36 @@
 import { getNodeText } from '@testing-library/react'
 import { useCookies } from 'react-cookie'
 var jwt = require('jsonwebtoken')
-export async function validateJWTCookie(jwtkey, guid){
-    //validate that the user data is correct.  Return empty array if not or user if correct.
-    const cookieJWT = guid
-    if(cookieJWT.guid){
-        const jwtGUID = cookieJWT.guid
-        console.log('KEY: ' + jwtkey)
-        
-        try{
-        const decode = jwt.verify(jwtGUID,jwtkey)
-        console.log("decode:" + JSON.stringify(decode))
-        console.log("Cookie:" + cookieJWT.guid)
-        return decode
-            
-        }catch(err){
-            console.log(err)
-            //invalid token and user should auth
-            return []
-        }
-        
 
-        
-    }
-    return []
+const jwtkey = 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYxNDY0MzExMCwiaWF0IjoxNjE0NjQzMTEwfQ.UQLQL86cAgeYwU78A3djiV9gc8eFQH9ZJ3RQCz3C-p8'
+export async function validateJWTCookie(uid){
+    //validate that the user data is correct.  Return empty array if not or user if correct.
+    const cookieJWT = uid
+    console.log("jwt UID Cookie" + uid)
+   
+        const decode = jwt.verify(uid,jwtkey)
+        console.log("decode:" + JSON.stringify(decode))
+        console.log(decode.uid)
+        //console.log("Cookie:" + cookieJWT.uid)
+        return true
+    
+    
+    return false
 }
 
-export async function createJWTCookie(user){
-    //create the jwt from the user data
+export function getJWTUID(uid){
+    const cookieJWT = uid
+    const decode = jwt.verify(uid,jwtkey)
+    return decode.uid
+}
 
-    return user
+export async function createJWTCookie(uid){
+    //create the jwt from the user data
+    //console.log('JWT UserId' + uid)
+    const user = {
+        uid: uid
+    }
+    const jwtUser = jwt.sign(user,jwtkey,{expiresIn:'1d'})
+    return jwtUser
 }
 

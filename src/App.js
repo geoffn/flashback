@@ -6,17 +6,19 @@ import CardSetEdit from './components/CardSetEdit'
 import CardSets from './components/CardSets'
 import CardSetView from './components/cardSetView'
 import firebase from 'firebase/app'
-import {auth} from './components/helpers/firebaseHelper'
+import 'firebase/auth'
+//import {auth} from './components/helpers/firebaseHelper'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { getAuthConfig } from './components/helpers/ConfigHelper'
 import { loginUserByUID, loginAndRegisterNewUser } from './components/helpers/UserHelper'
 import { useCookies } from 'react-cookie'
-import { validateJWTCookie } from './components/helpers/jwt'
+import { validateJWTCookie, createJWTCookie } from './components/helpers/jwt'
 var jwt = require('jsonwebtoken')
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [currentUser, setCurrentUser] = useState()
+  const [firebaseInit, setFirebaseInit] = useState(false)
   const [cookie, setCookie] = useCookies(['token'])
 
   //StyledFirebaseAuth component config
@@ -36,18 +38,59 @@ function App() {
  
 
       //Initial Firebase if not already started
-    
-      auth.onAuthStateChanged(user => {
-          console.log(auth.currentUser)
-          setCookie('uid',user.providerData[0].uid, {path: '/'} )
+      async function getConfig(){
+        const config = await getAuthConfig()
+        const returnConfig = {
+            apiKey: config.AUTH_KEY,
+            authDomain: config.AUTH_DOMAIN 
+        }
+        return returnConfig
+        }
+        const jwtUser = cookie.uid
+        console.log(jwtUser)
+        var validJWT = false
+        validateJWTCookie(jwtUser)
+        .then((resp) => {
+          validJWT = resp
+          console.log(validJWT)
+        })
+        .catch(() => {
+          validJWT = false
+        })
+        
+        if(!validJWT){
+          console.log('Invalid JWT')
+          
+            getConfig().then((config) => {
+              if (!firebase.apps.length) {
+                firebase.initializeApp(config)
+                setFirebaseInit(true)
+              }
+            
+        firebase.auth().onAuthStateChanged(user => {
+          //console.log(auth.currentUser)
+          console.log(user)
+          createJWTCookie(user.providerData[0].uid).then((jwtEncoded) => {
+          setCookie('uid',jwtEncoded, {path: '/'} )
+          console.log(jwtEncoded)
+
           setCookie('displayName', user.providerData[0].displayName, {path: '/'})
           
           setCurrentUser(user)
           
           setIsSignedIn(!!user)
-          
+        })
+
+        
       })
           
+          
+        
+      
+      })
+    }
+    //setIsSignedIn(true)
+      
         
 }, []) 
   return (
@@ -68,10 +111,15 @@ function App() {
 
             </Switch>
         </Router>
-        ) : (<div>
+        ) : (<div></div>)}
+
+        {(firebaseInit && !isSignedIn) ? (
+          <div>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
            </div>
-         )}
+         ): (<div></div>)}
+        
+        
         </div>
 
   )

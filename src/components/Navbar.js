@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-//import firebase from 'firebase'
+import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
-import { auth } from './helpers/firebaseHelper'
+//import { auth } from './helpers/firebaseHelper'
 
 export default function Navbar(props) {
 
@@ -17,7 +17,7 @@ export default function Navbar(props) {
             
         
     const logout= (key, e) => {
-       auth.signOut()
+      console.log( "firebase.signOut()")
     }
 
     return (

@@ -4,6 +4,7 @@ import { getAllCardSetsForUser } from "./helpers/CardSetHelper"
 import AddCardSetForm from './addCardSetForm'
 //import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
+import {getJWTUID} from './helpers/jwt'
 
 
 export default function CardSets(props) {
@@ -20,17 +21,22 @@ export default function CardSets(props) {
         // var baseURL = 'https://flashbackv1api.herokuapp.com/cardset'
         // axios.get(baseURL).then((data) => setCardSetData(data.data.results))
         //     .catch(console.error)
+        console.log("cookie=" +cookies.uid)
+        const UID = getJWTUID(cookies.uid)
+        console.log('UID decoded=' + UID)
         
-
         async function populateCardData() {
-            const callResponse = await getAllCardSetsForUser(cookies.uid)
+            const callResponse = await getAllCardSetsForUser(UID)
             //console.log(callResponse)
             await setCardSetData(callResponse)
             //console.log(cardSetData)
 
-        }
         
-        populateCardData()
+    
+        
+    }
+    populateCardData()
+        
     }, [cardsAdded])
 
     return (

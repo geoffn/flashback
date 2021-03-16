@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from 'axios'
 //import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
+import {getJWTUID} from './helpers/jwt'
 //Get The Card Set and then get all cards not assigned to another set.
 
 export default function AvailableCards(props) {
@@ -11,8 +12,8 @@ export default function AvailableCards(props) {
     const [cookies, setCookie] = useCookies(['uid'])
 
     useEffect(() => {
-
-        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + cookies.uid
+        const UID = getJWTUID(cookies.uid)
+        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + UID
         axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
             .catch(console.error)
 

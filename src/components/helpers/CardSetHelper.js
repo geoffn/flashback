@@ -65,7 +65,7 @@ export async function getAllCardSetsForUser(userId){
     //console.log(baseURL)
     const responseData = await axios.get(baseURL)
 
-    //console.log(responseData.data.results)
+    console.log(responseData.data.results)
 
     return responseData.data.results
 }
