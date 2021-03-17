@@ -7,7 +7,7 @@ import {getJWTUID} from './helpers/jwt'
 import { useCookies } from 'react-cookie'
 
 export default function AddCardSetForm(props){
-    const [cookies, setCookie] = useCookies(['uid'])
+    const [cookies] = useCookies(['uid'])
     
 //formik setup
     const initialValues = {
@@ -20,7 +20,9 @@ export default function AddCardSetForm(props){
 
     const onSubmit = async (values, submitProps) => {
         
-        values['uid'] = getJWTUID(cookies.uid)
+        getJWTUID(cookies.uid).then((UID) => {
+            values['uid'] = UID
+        
         console.log(values)
 
         const formJSON = JSON.stringify(values)
@@ -41,7 +43,8 @@ export default function AddCardSetForm(props){
             submitProps.resetForm()
             
         })        
-    }
+    })
+}
 
     return (
 

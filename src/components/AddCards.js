@@ -17,13 +17,14 @@ const cardForm = {
 
 export default function AddCards(props) {
     const [currentCardSetId] = useState(props.cardSetId)
-    const [cookies, setCookie] = useCookies(['guid'])
+    const [cookies] = useCookies(['uid'])
+ 
 
     const initialValues = {
             primary_word: '',
             secondary_word: '',
             category: '',
-            wordType: 'verb'   
+            wordType: 'verb'
     }
     const validationSchema = Yup.object({
         primary_word: Yup.string().required('Required!'),
@@ -31,13 +32,15 @@ export default function AddCards(props) {
         category: Yup.string().required('Required!')
     })
 
+
     const onSubmit = async (values, submitProps) => {
-        console.log(JSON.stringify(values))
-        const UID = getJWTUID(cookies.uid)
+        
+        //const UID = getJWTUID(cookies.uid)
         values['primary_language'] = 'es'
         values['secondary_language'] = 'en'
-        values['uid'] = UID
-
+        values['uid'] =  await getJWTUID(cookies.uid)
+        
+        console.log(JSON.stringify(values))
         const formJSON = JSON.stringify(values)
         const baseURL = 'https://flashbackv1api.herokuapp.com/card'
 

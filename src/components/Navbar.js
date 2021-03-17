@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie'
 export default function Navbar(props) {
 
     const [navLinks, setNavLinks] = useState(props.navBarLinks)
-    const [cookies, setCookie] = useCookies(['displayName']);
+    const [cookies,setCookie] = useCookies(['displayName']);
 
     useEffect(() => {
         
@@ -17,7 +17,9 @@ export default function Navbar(props) {
             
         
     const logout= (key, e) => {
-      console.log( "firebase.signOut()")
+      firebase.auth().signOut()
+      setCookie('uid','invalid', {path: '/'} )
+
     }
 
     return (

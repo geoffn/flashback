@@ -9,15 +9,15 @@ export default function AvailableCards(props) {
 
     const [availableCards, setAvailableCards] = useState([])
     const [currentCardSetId] = useState(props.cardSetId)
-    const [cookies, setCookie] = useCookies(['uid'])
+    const [cookies] = useCookies(['uid'])
 
     useEffect(() => {
-        const UID = getJWTUID(cookies.uid)
+        getJWTUID(cookies.uid).then((UID) => {
         var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + UID
         axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
             .catch(console.error)
-
-    }, [])
+        })
+    }, [cookies.uid])
 
     //Create a list of individual cards from the cardset array of cards.
     

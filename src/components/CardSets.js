@@ -22,7 +22,7 @@ export default function CardSets(props) {
         // axios.get(baseURL).then((data) => setCardSetData(data.data.results))
         //     .catch(console.error)
         console.log("cookie=" +cookies.uid)
-        const UID = getJWTUID(cookies.uid)
+        getJWTUID(cookies.uid).then((UID) => {
         console.log('UID decoded=' + UID)
         
         async function populateCardData() {
@@ -30,12 +30,14 @@ export default function CardSets(props) {
             //console.log(callResponse)
             await setCardSetData(callResponse)
             //console.log(cardSetData)
-
+        }
+        populateCardData()
+    })
         
     
         
-    }
-    populateCardData()
+    
+    
         
     }, [cardsAdded])
 

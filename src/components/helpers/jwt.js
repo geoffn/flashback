@@ -1,6 +1,4 @@
 
-import { getNodeText } from '@testing-library/react'
-import { useCookies } from 'react-cookie'
 var jwt = require('jsonwebtoken')
 
 const jwtkey = 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYxNDY0MzExMCwiaWF0IjoxNjE0NjQzMTEwfQ.UQLQL86cAgeYwU78A3djiV9gc8eFQH9ZJ3RQCz3C-p8'
@@ -8,19 +6,26 @@ export async function validateJWTCookie(uid){
     //validate that the user data is correct.  Return empty array if not or user if correct.
     const cookieJWT = uid
     console.log("jwt UID Cookie" + uid)
-   
-        const decode = jwt.verify(uid,jwtkey)
-        console.log("decode:" + JSON.stringify(decode))
-        console.log(decode.uid)
-        //console.log("Cookie:" + cookieJWT.uid)
-        return true
+
+    if(uid){
+        jwt.verify(uid,jwtkey, (err, decode)=> {
+            if(err){
+                console.log(err)
+                return false
+            }else{
+            console.log(decode.uid)
+            //console.log("Cookie:" + cookieJWT.uid)
+            return true
+            }
+        })
+    }
     
     
     return false
 }
 
-export function getJWTUID(uid){
-    const cookieJWT = uid
+export async function getJWTUID(uid){
+    
     const decode = jwt.verify(uid,jwtkey)
     return decode.uid
 }
