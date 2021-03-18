@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
+import { getAuthConfig } from './helpers/ConfigHelper'
 //import { auth } from './helpers/firebaseHelper'
 
 export default function Navbar(props) {
@@ -15,10 +16,23 @@ export default function Navbar(props) {
         //console.log(props.navBarLinks + "props")
     }, [props.navBarLinks])
             
+    async function getConfig(){
+        const config = await getAuthConfig()
+        const returnConfig = {
+            apiKey: config.AUTH_KEY,
+            authDomain: config.AUTH_DOMAIN 
+        }
+        return returnConfig
+        }
         
     const logout= (key, e) => {
-      firebase.auth().signOut()
-      setCookie('uid','invalid', {path: '/'} )
+        getConfig().then((config) => {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(config)
+                firebase.auth().signOut()
+                setCookie('uid','invalid', {path: '/'} )
+            }
+        })
 
     }
 

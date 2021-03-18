@@ -1,3 +1,4 @@
+import { getNodeText } from '@testing-library/dom'
 
 var jwt = require('jsonwebtoken')
 
@@ -8,19 +9,21 @@ export async function validateJWTCookie(uid){
     console.log("jwt UID Cookie" + uid)
 
     if(uid){
-        jwt.verify(uid,jwtkey, (err, decode)=> {
+        const status = jwt.verify(uid,jwtkey, (err, decode)=> {
             if(err){
                 console.log(err)
                 return false
             }else{
             console.log(decode.uid)
-            //console.log("Cookie:" + cookieJWT.uid)
+            console.log("JWT Returning true")
             return true
             }
         })
+
+        return status
     }
     
-    
+    console.log('returning false')
     return false
 }
 

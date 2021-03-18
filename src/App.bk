@@ -19,7 +19,7 @@ import { validateJWTCookie, createJWTCookie } from './components/helpers/jwt'
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [currentUser, setCurrentUser] = useState()
-  const [firebaseInit, setFirebaseInit] = useState(false)
+  const [firebaseInit, setFirebaseInit] = useState()
   const [cookie, setCookie] = useCookies(['token'])
 
   //StyledFirebaseAuth component config
@@ -36,54 +36,66 @@ function App() {
  
   
   useEffect(() => {
-    async function getConfig(){
-      const config = await getAuthConfig()
-      const returnConfig = {
-          apiKey: config.AUTH_KEY,
-          authDomain: config.AUTH_DOMAIN 
-      }
-      return returnConfig
-      }
-    
-    validateJWTCookie(cookie.uid)
-        .then((validJWT) => {
-          if(validJWT){
-            setIsSignedIn(true)
-          }else{
-            getConfig().then((config) => {
-              if (!firebase.apps.length) {
-                firebase.initializeApp(config)
-                setIsSignedIn(false)
-                setFirebaseInit(true)
-              }
-              firebase.auth().onAuthStateChanged(user => {
-                //console.log(auth.currentUser)
-                  console.log(user)
-                  createJWTCookie(user.providerData[0].uid).then((jwtEncoded) => {
-                    setCookie('uid',jwtEncoded, {path: '/'} )
-                    console.log("encoded JWT in APP:" +jwtEncoded)
-    
-                    setCookie('displayName', user.providerData[0].displayName, {path: '/'})
-                    
-                    setCurrentUser(user)
-                    
-                    setIsSignedIn(!!user)
-                  })
-          })
-
-        })
-      }
-    })
-
-    //If there is a cookie validate cookie if not then show login
-    //If there is a JWT validate JWT else sho login
-    //If valid JWT Login else go to login
+ 
     console.log("FiringUseEffectApp")
       //Initial Firebase if not already started
+      async function getConfig(){
+        const config = await getAuthConfig()
+        const returnConfig = {
+            apiKey: config.AUTH_KEY,
+            authDomain: config.AUTH_DOMAIN 
+        }
+        return returnConfig
+        }
+
+
+        const jwtUser = cookie.uid
+        console.log(jwtUser)
+        //var validJWT = false
+
+        validateJWTCookie(jwtUser)
+          .then((validJWT) => {
+            //validJWT = resp
+            console.log("validJWT="+validJWT)
+        
+            if(!validJWT){
+              console.log('Invalid JWT')
+              
+              getConfig().then((config) => {
+                if (!firebase.apps.length) {
+                  firebase.initializeApp(config)
+                  setIsSignedIn(false)
+                  setFirebaseInit(true)
+                }
+                
+            firebase.auth().onAuthStateChanged(user => {
+            //console.log(auth.currentUser)
+              console.log(user)
+              createJWTCookie(user.providerData[0].uid).then((jwtEncoded) => {
+                setCookie('uid',jwtEncoded, {path: '/'} )
+                console.log("encoded JWT in APP:" +jwtEncoded)
+
+                setCookie('displayName', user.providerData[0].displayName, {path: '/'})
+                
+                setCurrentUser(user)
+                
+                setIsSignedIn(!!user)
+              })
+
+        
+            })
+          })
+          .catch((error) => {
+            console.log(error)
+            validJWT = false
+          })
+          
+          
+        
       
-
-
-   
+    }
+    })
+    //setIsSignedIn(true)
       
         
 }, [isSignedIn]) 

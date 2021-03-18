@@ -38,7 +38,7 @@ export default function CardSets(props) {
         <div className="wrapper">
             <NavBar navBarLinks={navBarLinks}/>
 
-             {<AddCards cardSetId={currentCardSetId} forceCardsAdded={forceCardsAdded}/>}
+             {<AddCards cardSetId={currentCardSetId} forceCardsAdded={forceCardsAdded} />}
             
             {<AssignedCards cardSetId={currentCardSetId} cardsAdded={cardsAdded}/>}
 
