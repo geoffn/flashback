@@ -75,6 +75,7 @@ code {
   padding: 0;
   list-style: none;
   justify-content: center;
+  padding: 5pt;
 }
 .categoryBar {
   background-color: var(--primary_card_text);

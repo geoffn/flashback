@@ -36,9 +36,11 @@ export function SignOut(props) {
                 })
             }
             return (
-
-                <div className="categoryBar" onClick={e => logout()}>Logout: {cookies.displayName}</div>
-    
+                <div  className="categoryBarContainer">
+                    <div className="categoryBar logo"><img src="/img/mlmain.png" alt="My Learning Cards"></img>My Learning Cards</div>
+                
+                    <div className="categoryBar" onClick={e => logout()}>Logout: {cookies.displayName}</div>
+                </div>
         )
 
 }
