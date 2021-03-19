@@ -14,13 +14,14 @@ import { getAuthConfig } from './components/helpers/ConfigHelper'
 //import { loginUserByUID, loginAndRegisterNewUser } from './components/helpers/UserHelper'
 import { useCookies } from 'react-cookie'
 import { validateJWTCookie, createJWTCookie } from './components/helpers/jwt'
+import { SignOut } from './components/SignOut';
 //var jwt = require('jsonwebtoken')
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [currentUser, setCurrentUser] = useState()
   const [firebaseInit, setFirebaseInit] = useState(false)
-  const [cookie, setCookie] = useCookies(['token'])
+  const [cookie, setCookie] = useCookies(['uid'])
 
   //StyledFirebaseAuth component config
   //Add other options for auth here
@@ -34,6 +35,10 @@ function App() {
     }
   }  
  
+  function forceSignedOut(){
+    setIsSignedIn(false)
+    setFirebaseInit(true)
+  }
   
   useEffect(() => {
     async function getConfig(){
@@ -44,7 +49,7 @@ function App() {
       }
       return returnConfig
       }
-    
+    console.log('isSignedIn=' + isSignedIn)
     validateJWTCookie(cookie.uid)
         .then((validJWT) => {
           if(validJWT){
@@ -59,6 +64,7 @@ function App() {
               firebase.auth().onAuthStateChanged(user => {
                 //console.log(auth.currentUser)
                   console.log(user)
+                  if(user){
                   createJWTCookie(user.providerData[0].uid).then((jwtEncoded) => {
                     setCookie('uid',jwtEncoded, {path: '/'} )
                     console.log("encoded JWT in APP:" +jwtEncoded)
@@ -69,6 +75,10 @@ function App() {
                     
                     setIsSignedIn(!!user)
                   })
+                }else{
+                    setIsSignedIn(false)
+                    console.log("User is null set signedinfalse")
+                  }
           })
 
         })
@@ -79,6 +89,7 @@ function App() {
     //If there is a JWT validate JWT else sho login
     //If valid JWT Login else go to login
     console.log("FiringUseEffectApp")
+    console.log("issignedin=" + isSignedIn)
       //Initial Firebase if not already started
       
 
@@ -92,8 +103,9 @@ function App() {
    <div>
       
       {(isSignedIn) ? (
-        
-    <Entry />
+       <div>
+       <SignOut forceSignedOut={forceSignedOut}/> 
+    <Entry /></div>
         ) : (<div></div>)}
 
         {(firebaseInit && !isSignedIn) ? (

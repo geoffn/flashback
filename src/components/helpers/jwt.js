@@ -9,18 +9,13 @@ export async function validateJWTCookie(uid){
     console.log("jwt UID Cookie" + uid)
 
     if(uid){
-        const status = jwt.verify(uid,jwtkey, (err, decode)=> {
-            if(err){
-                console.log(err)
-                return false
-            }else{
-            console.log(decode.uid)
-            console.log("JWT Returning true")
-            return true
-            }
-        })
-
-        return status
+        try{
+            return jwt.verify(uid, jwtkey)
+            
+        }catch(err){
+            return false
+        }
+        
     }
     
     console.log('returning false')
@@ -28,9 +23,13 @@ export async function validateJWTCookie(uid){
 }
 
 export async function getJWTUID(uid){
-    
+    try{
     const decode = jwt.verify(uid,jwtkey)
     return decode.uid
+    }catch(err){
+        console.log(err)
+    }
+    return false
 }
 
 export async function createJWTCookie(uid){

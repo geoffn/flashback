@@ -5,10 +5,10 @@ import AddCardSetForm from './addCardSetForm'
 //import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
 import {getJWTUID} from './helpers/jwt'
-
+import { useHistory } from 'react-router-dom'
 
 export default function CardSets(props) {
-
+    const history = useHistory()
     const [cardSetData, setCardSetData] = useState(null)
     const [cardsAdded, setCardsAdded] = useState(0)
     const [cookies, setCookie] = useCookies(['uid'])
@@ -24,7 +24,11 @@ export default function CardSets(props) {
         console.log("cookie=" +cookies.uid)
         getJWTUID(cookies.uid).then((UID) => {
         console.log('UID decoded=' + UID)
-        
+        if(!UID){
+            
+            console.log('History Push Cardset')
+            history.push('/SignOut')
+        }
         async function populateCardData() {
             const callResponse = await getAllCardSetsForUser(UID)
             //console.log(callResponse)
@@ -32,6 +36,8 @@ export default function CardSets(props) {
             //console.log(cardSetData)
         }
         populateCardData()
+    }).catch((err) => {
+        console.log(err)
     })
         
     

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
 import { getAuthConfig } from './helpers/ConfigHelper'
+import { SignOut } from "./SignOut";
 //import { auth } from './helpers/firebaseHelper'
 
 export default function Navbar(props) {
@@ -25,21 +26,12 @@ export default function Navbar(props) {
         return returnConfig
         }
         
-    const logout= (key, e) => {
-        getConfig().then((config) => {
-            if (!firebase.apps.length) {
-                firebase.initializeApp(config)
-                firebase.auth().signOut()
-                setCookie('uid','invalid', {path: '/'} )
-            }
-        })
-
-    }
+    
 
     return (
 
             <div className="categoryBarContainer">
-                <div className="categoryBar" onClick={e => logout()}>Logout: {cookies.displayName}</div>
+                
                 <div className="categoryBar logo"><img src="/img/mlmain.png" alt="My Learning Cards"></img>My Learning Cards</div>
                 
                     <div className="categoryBar"><a href="/" alt="My Card Sets">

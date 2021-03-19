@@ -6,7 +6,6 @@ import CardSetEdit from './CardSetEdit'
 import CardSets from './CardSets'
 import CardSetView from './cardSetView'
 
-
 function Entry() {
  
   return (
@@ -19,7 +18,6 @@ function Entry() {
                 <Route path="/cardsets" component={CardSets} />
                 <Route path="/cardsetedit" component={CardSetEdit} />
                 <Route path="/cardsetview" component={CardSetView} />
-                
 
             </Switch>
         </Router>
