@@ -13,7 +13,7 @@
       "sizes": "256x256"
     }
   ],
-  "start_url": "/?source=pwa",
+  "start_url": "/",
   "background_color": "#c7ffd8",
   "display": "standalone",
   "scope": "/",
@@ -34,17 +34,5 @@
       "icons": [{ "src": "/img/android-chrome-192x192.png", "sizes": "192x192" }]
     }
   ],
-  "description": "Weather forecast information"//,
-  // "screenshots": [
-  //   {
-  //     "src": "/images/screenshot1.png",
-  //     "type": "image/png",
-  //     "sizes": "540x720"
-  //   },
-  //   {
-  //     "src": "/images/screenshot2.jpg",
-  //     "type": "image/jpg",
-  //     "sizes": "540x720"
-  //   }
-  // ]
+  "description": "Weather forecast information"
 }
