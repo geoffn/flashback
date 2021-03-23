@@ -1,12 +1,11 @@
-import { getNodeText } from '@testing-library/dom'
 
 var jwt = require('jsonwebtoken')
 
 const jwtkey = 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYxNDY0MzExMCwiaWF0IjoxNjE0NjQzMTEwfQ.UQLQL86cAgeYwU78A3djiV9gc8eFQH9ZJ3RQCz3C-p8'
 export async function validateJWTCookie(uid){
     //validate that the user data is correct.  Return empty array if not or user if correct.
-    const cookieJWT = uid
-    console.log("jwt UID Cookie" + uid)
+    //const cookieJWT = uid
+    //console.log("jwt UID Cookie" + uid)
 
     if(uid){
         try{
@@ -18,7 +17,7 @@ export async function validateJWTCookie(uid){
         
     }
     
-    console.log('returning false')
+    //console.log('returning false')
     return false
 }
 

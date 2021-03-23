@@ -10,7 +10,7 @@
     {
       "src": "/img/android-chrome-256x256.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "256x256"
     }
   ],
   "start_url": "/?source=pwa",
@@ -31,20 +31,20 @@
       "short_name": "Tomorrow",
       "description": "View weather information for tomorrow",
       "url": "/tomorrow?source=pwa",
-      "icons": [{ "src": "/images/android-chrome-192x192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/img/android-chrome-192x192.png", "sizes": "192x192" }]
     }
   ],
-  "description": "Weather forecast information",
-  "screenshots": [
-    {
-      "src": "/images/screenshot1.png",
-      "type": "image/png",
-      "sizes": "540x720"
-    },
-    {
-      "src": "/images/screenshot2.jpg",
-      "type": "image/jpg",
-      "sizes": "540x720"
-    }
-  ]
+  "description": "Weather forecast information"//,
+  // "screenshots": [
+  //   {
+  //     "src": "/images/screenshot1.png",
+  //     "type": "image/png",
+  //     "sizes": "540x720"
+  //   },
+  //   {
+  //     "src": "/images/screenshot2.jpg",
+  //     "type": "image/jpg",
+  //     "sizes": "540x720"
+  //   }
+  // ]
 }

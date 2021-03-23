@@ -11,7 +11,7 @@ export default function CardSets(props) {
     const history = useHistory()
     const [cardSetData, setCardSetData] = useState(null)
     const [cardsAdded, setCardsAdded] = useState(0)
-    const [cookies, setCookie] = useCookies(['uid'])
+    const [cookies] = useCookies(['uid'])
 
     function forceCardsAdded(){
         setCardsAdded(cardsAdded => cardsAdded + 1)
@@ -21,12 +21,12 @@ export default function CardSets(props) {
         // var baseURL = 'https://flashbackv1api.herokuapp.com/cardset'
         // axios.get(baseURL).then((data) => setCardSetData(data.data.results))
         //     .catch(console.error)
-        console.log("cookie=" +cookies.uid)
+        //console.log("cookie=" +cookies.uid)
         getJWTUID(cookies.uid).then((UID) => {
-        console.log('UID decoded=' + UID)
+        //console.log('UID decoded=' + UID)
         if(!UID){
             
-            console.log('History Push Cardset')
+            //console.log('History Push Cardset')
             history.push('/SignOut')
         }
         async function populateCardData() {

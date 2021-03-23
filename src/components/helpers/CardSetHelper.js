@@ -37,7 +37,7 @@ export async function updateAssignedCards(cardSet){
     console.log(baseURL)
     
     var responseData = await axios.get(baseURL)
-    console.log(responseData.data)
+    //console.log(responseData.data)
     //     await axios.get(baseURL).then((data) => {
     //     console.log("udpatecards:" + JSON.stringify(data.data.results))
     return responseData.data
@@ -65,7 +65,7 @@ export async function getAllCardSetsForUser(userId){
     //console.log(baseURL)
     const responseData = await axios.get(baseURL)
 
-    console.log(responseData.data.results)
+    //console.log(responseData.data.results)
 
     return responseData.data.results
 }

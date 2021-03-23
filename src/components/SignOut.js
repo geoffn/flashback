@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
 import { getAuthConfig } from './helpers/ConfigHelper'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 export function SignOut(props) {
     const [cookies, setCookie] = useCookies(['token'])
-    const history = useHistory()
+    //const history = useHistory()
     
         async function getConfig(){
             const config = await getAuthConfig()

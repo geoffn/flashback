@@ -1,10 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css';
-import AddCards from './components/AddCards'
-import CardSetEdit from './components/CardSetEdit'
-import CardSets from './components/CardSets'
-import CardSetView from './components/cardSetView'
 import Entry from './components/Entry'
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -19,7 +14,7 @@ import { SignOut } from './components/SignOut';
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
-  const [currentUser, setCurrentUser] = useState()
+  const [setCurrentUser] = useState()
   const [firebaseInit, setFirebaseInit] = useState(false)
   const [cookie, setCookie] = useCookies(['uid'])
 
@@ -49,7 +44,7 @@ function App() {
       }
       return returnConfig
       }
-    console.log('isSignedIn=' + isSignedIn)
+    //console.log('isSignedIn=' + isSignedIn)
     validateJWTCookie(cookie.uid)
         .then((validJWT) => {
           if(validJWT){
@@ -77,7 +72,7 @@ function App() {
                   })
                 }else{
                     setIsSignedIn(false)
-                    console.log("User is null set signedinfalse")
+                    //console.log("User is null set signedinfalse")
                   }
           })
 
@@ -88,8 +83,8 @@ function App() {
     //If there is a cookie validate cookie if not then show login
     //If there is a JWT validate JWT else sho login
     //If valid JWT Login else go to login
-    console.log("FiringUseEffectApp")
-    console.log("issignedin=" + isSignedIn)
+    //console.log("FiringUseEffectApp")
+    //console.log("issignedin=" + isSignedIn)
       //Initial Firebase if not already started
       
 
