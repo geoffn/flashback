@@ -14,7 +14,7 @@ import { SignOut } from './components/SignOut';
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
-  const [setCurrentUser] = useState()
+  //const [setCurrentUser] = useState()
   const [firebaseInit, setFirebaseInit] = useState(false)
   const [cookie, setCookie] = useCookies(['uid'])
 
@@ -66,7 +66,7 @@ function App() {
     
                     setCookie('displayName', user.providerData[0].displayName, {path: '/'})
                     
-                    setCurrentUser(user)
+                    //setCurrentUser(user)
                     
                     setIsSignedIn(!!user)
                   })
@@ -92,7 +92,7 @@ function App() {
    
       
         
-}, [isSignedIn]) 
+}, [isSignedIn, cookie.uid, setCookie]) 
   return (
 
    <div>

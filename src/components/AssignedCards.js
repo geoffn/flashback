@@ -26,7 +26,7 @@ export default function AssignedCards(props) {
         //console.log(cardSetsPre)
         var cardsUsed = []
         cardSetsPre.map((cardSet, index) => (
-                cardSet.cards.map((card, index) => {
+                cardSet.cards.map((card, index) => (
     
                 
                     cardsUsed.push({
@@ -39,7 +39,7 @@ export default function AssignedCards(props) {
                         category : card.category,
                         wordType : card.wordType
                    })
-                })
+                ))
             )
         )
             

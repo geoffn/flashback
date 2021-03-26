@@ -1,5 +1,6 @@
 import React from "react";
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import { useCookies } from 'react-cookie'
 import { getAuthConfig } from './helpers/ConfigHelper'
 //import { useHistory } from 'react-router-dom'

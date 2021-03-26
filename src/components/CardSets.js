@@ -45,7 +45,7 @@ export default function CardSets(props) {
     
     
         
-    }, [cardsAdded])
+    }, [cardsAdded, cookies.uid, history])
 
     return (
         <div className="wrapper">

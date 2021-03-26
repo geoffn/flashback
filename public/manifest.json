@@ -23,14 +23,7 @@
       "name": "My Card Sets?",
       "short_name": "MyCards",
       "description": "BrowsecardSets",
-      "url": "/?source=pwa",
-      "icons": [{ "src": "/img/android-chrome-192x192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "How's weather tomorrow?",
-      "short_name": "Tomorrow",
-      "description": "View weather information for tomorrow",
-      "url": "/tomorrow?source=pwa",
+      "url": "/",
       "icons": [{ "src": "/img/android-chrome-192x192.png", "sizes": "192x192" }]
     }
   ],
