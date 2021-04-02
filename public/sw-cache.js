@@ -27,52 +27,29 @@ self.addEventListener('activate', (e) => {
 })
 
 //Call Fetch Event
-self.addEventListener('fetch', e => {
-    console.log("Service Worker: Fetching")
-    if (!(e.request.url.indexOf('http') === 0)) return
-    
-    e.respondWith(fromCache(e.request))
+// self.addEventListener('fetch', e => {
+//     console.log("Service Worker: Fetching")
+//     
+//     console.log(e.request)
+//     e.respondWith(fromCache(e.request))
 
-    e.waitUntil(
-        update(e.request)
-            .then(refresh)
-    )
-})
+//     e.waitUntil(
+//         update(e.request)
+//             .then(refresh)
+//     )
+// })
 
-function fromCache(req){
-    return caches.open(cacheName).then(function (cache) {
-        console.log("calling fromcache")
-        return cache.match(req)
-    })
-
-}
-
-function update(req){
-    return caches.open(cacheName).then(function (cache) {
-    return fetch(req).then(function (res) {
-        return cache.put(req, res.clone()).then(function () {
-            return res
-        })
-        })
-    })
-}
-
-function refresh(res) {
-    return self.clients.matchAll().then(function (clients) {
-        clients.foreach(function(client) {
-            var message = {
-                type: 'refresh',
-                url: response.url,
-                eTag: response.headers.get('ETag')
-            }
-
-            client.postMessage(JSON.stringify(message))
-        })
-            
+self.addEventListener('fetch', function(event) {
+    if (!(event.request.url.indexOf('http') === 0)) return
+    console.log(event.request)
+    event.respondWith(
+      caches.open(cacheName).then(function(cache) {
+        return cache.match(event.request).then(function (response) {
+          return response || fetch(event.request).then(function(response) {
+            cache.put(event.request, response.clone());
+            return response;
+          });
         });
-    }
-
-//Need to change so we provide cache first then fetch
-//event.respondWith(caches.match(event.request))
-//if (url.origin===location.origin && url.pathname=='/') then event.respondwith(caches.match)
-//npm idb for index database
+      })
+    );
+  });
