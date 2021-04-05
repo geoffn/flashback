@@ -15,6 +15,8 @@ export default function AddCardSetForm(props){
         set_description: ''
     }
     const validationSchema = Yup.object({
+        set_name: Yup.string().required('Required!'),
+        set_description: Yup.string().required('Required!')
 
     })
 
@@ -60,23 +62,23 @@ export default function AddCardSetForm(props){
                         <Field
                             type="text"
                             name="set_name"
-                            placeholder="Set Name"
+                            placeholder="Card Set Name"
                             className="addcard_textfield"
                         />
                         <p><ErrorMessage name='set_name' /></p>
                         <Field
                             type="text"
                             name="set_description"
-                            placeholder="Set Description"
+                            placeholder="Card Set Description"
                             className="addcard_textfield"
                         />
                         <p><ErrorMessage name='set_description' /></p>
 
                         <div ><p>&nbsp;</p>
-                            <button type="submit" className="addcard_textfield">Submit</button>
+                            <button type="submit" className="addcard_button">Submit</button>
 
 
-                            <button className="addcard_textfield" >Cancel</button>
+                            <button className="addcard_button" >Cancel</button>
 
                         </div>
                     </Form>

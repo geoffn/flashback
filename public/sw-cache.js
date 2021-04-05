@@ -40,6 +40,7 @@ self.addEventListener('activate', (e) => {
 // })
 
 self.addEventListener('fetch', function(event) {
+    if (event.request.method==='POST') return
     if (!(event.request.url.indexOf('http') === 0)) return
     console.log(event.request)
     event.respondWith(

@@ -123,10 +123,10 @@ export default function AddCards(props) {
                         <p><ErrorMessage name='category' /></p>
                        
                         <div ><p>&nbsp;</p>
-                                    <button type="submit" className="addcard_textfield">Submit</button>
+                                    <button type="submit" className="addcard_button">Submit</button>
 
 
-                                    <button className="addcard_textfield" >Cancel</button>
+                                    <button className="addcard_button" >Cancel</button>
 
                                 </div>
 

@@ -257,9 +257,11 @@ code {
 
 .addcard_textfield {
   border-bottom: 2px solid var(--global_bg);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
   font-family: inherit;
   width: 100%;
-  border: 0;
   outline: 0;
   font-size: 1.3rem;
   color: var(--primary_card_text);
@@ -268,8 +270,41 @@ code {
   transition: border-color 0.2s;
 }
 
+.addcard_textfield:focus {
+  border-bottom: 2px solid black
+}
+
+.addcard_button {
+  padding: 5px;
+  font-family: inherit;
+  width: 100px;
+  outline: 0;
+  font-size: 1.3rem;
+  color: var(--primary_card_text);
+  background: transparent;
+  transition: border-color 0.2s;
+  cursor: pointer;
+  border-bottom: 2px solid var(--global_bg);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  margin: 5px;
+}
+
 .form_header {
   font-size: 2rem;
+}
+
+::-webkit-input-placeholder {
+  color: var(--primary_card_text);
+}
+
+::-moz-placeholder {
+  color: var(--primary_card_text);
+}
+
+:-moz-placeholder {
+  color: var(--primary_card_text);
 }
 
 .nav_active {
