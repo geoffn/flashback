@@ -110,6 +110,17 @@ code {
   cursor: auto;
 }
 
+.categoryBar.logo a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  color: var(--primary_card_text);
+}
+
+.categoryBar.logo a:active {
+  color: var(--primary_card_text);
+}
+
 .categoryBar a {
   text-decoration: none;
   display: block;

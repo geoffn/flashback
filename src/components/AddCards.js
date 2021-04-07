@@ -6,14 +6,7 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import {getJWTUID} from './helpers/jwt'
 
-//Temp until cardsform has the correct data
-const cardForm = {
-    primary_language: 'es',
-    primary_language_long: 'spanish',
-    secondary_language: 'en',
-    secondary_language_long: 'english',
-    OwnerId: '000000000000000000000000'
-}
+
 
 export default function AddCards(props) {
     const [currentCardSetId] = useState(props.cardSetId)
@@ -23,8 +16,7 @@ export default function AddCards(props) {
     const initialValues = {
             primary_word: '',
             secondary_word: '',
-            category: '',
-            wordType: 'verb'
+            category: ''
     }
     const validationSchema = Yup.object({
         primary_word: Yup.string().required('Required!'),
@@ -36,8 +28,6 @@ export default function AddCards(props) {
     const onSubmit = async (values, submitProps) => {
         
         //const UID = getJWTUID(cookies.uid)
-        values['primary_language'] = 'es'
-        values['secondary_language'] = 'en'
         values['uid'] =  await getJWTUID(cookies.uid)
         
         console.log(JSON.stringify(values))
@@ -94,7 +84,7 @@ export default function AddCards(props) {
                         <Field 
                             type="text"
                             name="primary_word"
-                            placeholder={cardForm.primary_language_long}
+                            placeholder="Front of Card"
                             className="addcard_textfield"
                         />
                         <p><ErrorMessage name='primary_error' /></p>
@@ -102,18 +92,11 @@ export default function AddCards(props) {
                         <Field 
                             type="text"
                             name="secondary_word"
-                            placeholder={cardForm.secondary_language_long}
+                            placeholder="Back of Card"
                             className="addcard_textfield"
                         />
                         <p><ErrorMessage name='secondary_error' /></p>
                         
-                        < Field name="wordType"  component="select" placeholder="Type" className="addcard_textfield">
-                            <option value="verb" defaultValue>Verb</option>
-                            <option value="noun" >Noun</option>
-                            <option value="adjective">Adjective</option>
-                        </Field >    
-                        <p><ErrorMessage name="wordType" className="input-error" /></p>
-
                         <Field 
                             type="text"
                             name="category"

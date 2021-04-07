@@ -47,6 +47,9 @@ export async function updateAssignedCards(cardSet){
 
 
 export async function getCardsForCardset(cardSet){
+    //Cardset is touched and update last accessed_date
+
+    updateAccessed(cardSet)
     const baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + cardSet
         //console.log(baseURL)
         const responseData = await axios.get(baseURL)
@@ -56,6 +59,11 @@ export async function getCardsForCardset(cardSet){
     return responseData.data.results
 }
 
+async function updateAccessed(cardSet){
+    const baseURL = 'https://flashbackv1api.herokuapp.com/cardsetaccessed/' + cardSet
+    const responseData = await axios.get(baseURL)
+    return responseData.data.results
+}
 
 export async function getAllCardSetsForUser(userId){
     //Pulls all the card set data for a specific user
@@ -70,3 +78,9 @@ export async function getAllCardSetsForUser(userId){
     return responseData.data.results
 }
 
+export async function deleteCardSet(cardSet){
+    const baseURL ='https://flashbackv1api.herokuapp.com/cardsetdelete/' + cardSet
+    const responseData = await axios.delete(baseURL)
+    //console.log(responseData.data.results)
+    return responseData.data.results
+}

@@ -26,7 +26,7 @@ export default function AddCardSetForm(props){
             values['uid'] = UID
         
         console.log(values)
-
+        
         const formJSON = JSON.stringify(values)
         const baseURL = 'https://flashbackv1api.herokuapp.com/cardset'
 

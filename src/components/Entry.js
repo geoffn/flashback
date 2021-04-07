@@ -5,6 +5,7 @@ import AddCards from './AddCards'
 import CardSetEdit from './CardSetEdit'
 import CardSets from './CardSets'
 import CardSetView from './cardSetView'
+import CardSetDelete from './CardSetDelete'
 
 function Entry() {
  
@@ -18,6 +19,7 @@ function Entry() {
                 <Route path="/cardsets" component={CardSets} />
                 <Route path="/cardsetedit" component={CardSetEdit} />
                 <Route path="/cardsetview" component={CardSetView} />
+                <Route path="/cardsetdelete" component={CardSetDelete} />
 
             </Switch>
         </Router>

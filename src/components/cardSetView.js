@@ -28,6 +28,10 @@ export default function CardSets(props) {
                 linkText: data[0].set_name,
                 linkAnchor: "/cardsetedit?id=" + currentCardSetId,
                 linkFunction: "Edit"
+            },{
+                linkText: data[0].set_name,
+                linkAnchor: "/cardsetdelete?id=" + currentCardSetId,
+                linkFunction: "Delete"
             }]
             setNavBarLinks(nav)
         })

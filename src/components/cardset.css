@@ -5,6 +5,7 @@
   --secondary_card_text: #11698e;
   --shadow: 4px 7px 11px -1px #000000;
 }
+
 body {
   margin: 30px 50px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -20,6 +21,7 @@ body {
   grid-gap: 20px;
   background-color: blue;
 }
+
 .addCardForm {
   background-color: var(--main_background);
   margin-top: 20px;
@@ -37,6 +39,7 @@ body {
   grid-template-columns: 400px;
   display: grid;
 }
+
 .main-nav ul {
   display: grid;
   grid-gap: 20px;
@@ -69,6 +72,7 @@ body {
   border: 5px;
   padding-top: 10px;
 }
+
 .categoryBarContainer {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   display: grid;
@@ -77,6 +81,7 @@ body {
   list-style: none;
   justify-content: center;
 }
+
 .categoryBar {
   background-color: var(--primary_card_text);
   justify-items: center;
@@ -90,14 +95,27 @@ body {
   height: auto;
   box-shadow: var(--shadow);
 }
+
 .categoryBar a {
   text-decoration: none;
   display: block;
   padding: 10px;
   color: var(--secondary_card_text);
 }
+
 .categoryBar a:active {
   color: var(--secondary_card_text);
+}
+
+.categoryBar.logo a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  color: var(--primary_card_text);
+}
+
+.categoryBar.logo a:active {
+  color: var(--primary_card_text);
 }
 
 .fullCard {
@@ -112,6 +130,7 @@ body {
   box-shadow: var(--shadow);
   transform-style: preserve-3d;
 }
+
 /* .fullCard.is-flipped {
   transform: translateX(-100%) rotateY((-180deg));
 } */
@@ -127,6 +146,7 @@ body {
   align-items: center;
   backface-visibility: hidden;
 }
+
 .cardAnswer {
   color: var(--secondary_card_text);
   display: flex;
@@ -162,6 +182,7 @@ body {
   display: flex;
   flex-direction: row;
 }
+
 .toggleAll button {
   background-color: var(--global_bg);
   border-radius: 5px;
@@ -196,11 +217,13 @@ body {
   width: 200px;
   box-shadow: var(--shadow);
 }
+
 .navbar a {
   text-decoration: none;
   padding: 10px;
   color: var(--primary_card_text);
 }
+
 .addcard_textfield {
   border-bottom: 2px solid var(--global_bg);
   font-family: inherit;
@@ -213,9 +236,11 @@ body {
   background: transparent;
   transition: border-color 0.2s;
 }
+
 .form_header {
   font-size: 2rem;
 }
+
 .nav_active {
   color: #000000;
 }
@@ -225,6 +250,7 @@ body {
     grid-template-columns: repeat(2, 100px);
   }
 }
+
 @media (max-width: 900px) {
   .categoryBarContainer {
     grid-template-columns: repeat(4, 100px);
