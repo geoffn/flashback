@@ -3,6 +3,8 @@ import axios from 'axios'
 //import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
 import {getJWTUID} from './helpers/jwt'
+import { Formik, Field, ErrorMessage, Form } from 'formik'
+import * as Yup from 'yup'
 //Get The Card Set and then get all cards not assigned to another set.
 
 export default function AvailableCards(props) {
@@ -11,6 +13,26 @@ export default function AvailableCards(props) {
     const [currentCardSetId] = useState(props.cardSetId)
     const [cookies] = useCookies(['uid'])
 
+    const initialValues = {
+        search: ''
+    }
+    const validationSchema = Yup.object({
+       // search: Yup.string().required('Required!')
+    })
+
+    const onSubmit = async (values, submitProps) => {
+        getJWTUID(cookies.uid).then((UID) => {
+            var baseCardURL
+            if (!values.search){
+                baseCardURL = 'https://flashbackv1api.herokuapp.com/card/' + UID
+            } else{
+                baseCardURL =  'https://flashbackv1api.herokuapp.com/cardsearch/' + UID + '/' + values.search
+            } 
+            axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
+                .catch(console.error)
+            })
+
+    }
     useEffect(() => {
         getJWTUID(cookies.uid).then((UID) => {
         var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + UID
@@ -49,22 +71,53 @@ export default function AvailableCards(props) {
        
     }
     return (
-        <div className="flashCard">
-            {availableCards && availableCards.map((cardSet, index) => (
-                <div className="fullCardSet" id={index} key={index}>
-                    <h2>Available Card</h2>
-                    <h2>{cardSet.set_name}</h2>
+        <div>
+            <div className="addCard">
+                <label>Search Available Cards</label>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+
+            >
+                <Form id="addcard">
+
+                        <Field 
+                            type="text"
+                            name="search"
+                            placeholder="*"
+                            className="addcard_searchfield"
+                        />
+                         <button type="submit" className="addcard_button">Search</button>
+
+                        <p><ErrorMessage name='search' /></p>
+                       
+                        <div ><p>&nbsp;</p>
+                                   
+                                </div>
+
                 
-                    <p>{cardSet.primary_word}</p>
 
-                    <p>{cardSet.secondary_word}</p>
+                </Form>
+            </Formik>
+            </div>
+            <div className="flashCard">
+                {availableCards && availableCards.map((cardSet, index) => (
+                    <div className="fullCardSet" id={index} key={index}>
+                        <h2>Available Card</h2>
+                        <h2>{cardSet.set_name}</h2>
+                    
+                        <p>{cardSet.primary_word}</p>
 
-                    <p><button onClick={() => addCardToSet(currentCardSetId,cardSet._id)}>Add Card</button></p>
-                
-                </div>
-            ))}
+                        <p>{cardSet.secondary_word}</p>
 
-        
+                        <p><button onClick={() => addCardToSet(currentCardSetId,cardSet._id)}>Add Card</button></p>
+                    
+                    </div>
+                ))}
+
+            
+            </div>
         </div>
     )
 }

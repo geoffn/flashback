@@ -285,6 +285,22 @@ code {
   border-bottom: 2px solid black
 }
 
+.addcard_searchfield {
+  border-bottom: 2px solid var(--global_bg);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-family: inherit;
+  width: 300px;
+  outline: 0;
+  font-size: 1.3rem;
+  color: var(--primary_card_text);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  padding: 5px;
+}
+
 .addcard_button {
   padding: 5px;
   font-family: inherit;

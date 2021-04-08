@@ -27,6 +27,7 @@ export function SignOut(props) {
                         firebase.initializeApp(config)
                     }
                     firebase.auth().signOut()
+                    console.log('Firebase Signedout')
                 }).then(setCookie('uid','invalid', {path: '/'} ))
                     
                     
