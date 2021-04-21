@@ -23,7 +23,8 @@ function App() {
   const uiConfig = {
     signInFlow: "popup",
     signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
     callbacks: {
       signInSuccess: () => false
@@ -104,8 +105,11 @@ function App() {
         ) : (<div></div>)}
 
         {(firebaseInit && !isSignedIn) ? (
-          <div>
+          <div  className="categoryBarContainer login">
+          <div className="categoryBar logo"><a href="/"><img src="/img/mlmain.png" alt="My Learning Cards"></img>My Learning Cards</a></div>
+          <div className="categoryBar">
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+           </div>
            </div>
          ): (<div></div>)}
         
