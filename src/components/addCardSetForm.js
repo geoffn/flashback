@@ -28,7 +28,7 @@ export default function AddCardSetForm(props){
         console.log(values)
         
         const formJSON = JSON.stringify(values)
-        const baseURL = 'https://flashbackv1api.herokuapp.com/cardset'
+        const baseURL = process.env.REACT_APP_API_URL + 'cardset'
 
         axios({
             method: 'post',

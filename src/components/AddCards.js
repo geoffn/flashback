@@ -32,7 +32,7 @@ export default function AddCards(props) {
         
         console.log(JSON.stringify(values))
         const formJSON = JSON.stringify(values)
-        const baseURL = 'https://flashbackv1api.herokuapp.com/card'
+        const baseURL = process.env.REACT_APP_API_URL + 'card'
 
         console.log(formJSON)
         const newCard =await axios({
@@ -51,7 +51,7 @@ export default function AddCards(props) {
         }
 
         console.log(JSON.stringify(postData))
-        const baseCardURL = 'https://flashbackv1api.herokuapp.com/cardsetaddcard'
+        const baseCardURL = process.env.REACT_APP_API_URL + 'cardsetaddcard'
         const callResponse = await axios({
             method: 'post',
             url: baseCardURL,

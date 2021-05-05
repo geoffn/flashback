@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 
+
 export async function removeCard(cardSet, card) {
         //Removes a specific card from the provided cardset
         //Takes cardSet which is the ID for the carset
@@ -11,7 +12,7 @@ export async function removeCard(cardSet, card) {
             cardId : card,
             cardSetId : cardSet
         }
-        var baseURL = 'https://flashbackv1api.herokuapp.com/cardsetremovecard'
+        var baseURL = process.env.REACT_APP_API_URL + 'cardsetremovecard'
         try{
                 const callResponse = axios({
                 method: 'post',
@@ -33,7 +34,7 @@ export async function removeCard(cardSet, card) {
     }
 
 export async function updateAssignedCards(cardSet){
-    var baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + cardSet
+    var baseURL = process.env.REACT_APP_API_URL + 'cardset/' + cardSet
     console.log(baseURL)
     
     var responseData = await axios.get(baseURL)
@@ -50,7 +51,7 @@ export async function getCardsForCardset(cardSet){
     //Cardset is touched and update last accessed_date
 
     updateAccessed(cardSet)
-    const baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + cardSet
+    const baseURL = process.env.REACT_APP_API_URL + 'cardset/' + cardSet
         //console.log(baseURL)
         const responseData = await axios.get(baseURL)
 
@@ -60,7 +61,7 @@ export async function getCardsForCardset(cardSet){
 }
 
 async function updateAccessed(cardSet){
-    const baseURL = 'https://flashbackv1api.herokuapp.com/cardsetaccessed/' + cardSet
+    const baseURL = process.env.REACT_APP_API_URL + 'cardsetaccessed/' + cardSet
     const responseData = await axios.get(baseURL)
     return responseData.data.results
 }
@@ -69,7 +70,7 @@ export async function getAllCardSetsForUser(userId){
     //Pulls all the card set data for a specific user
     //TODO: Need to add userid info
 
-    const baseURL = 'https://flashbackv1api.herokuapp.com/cardsetforowner/' + userId
+    const baseURL = process.env.REACT_APP_API_URL + 'cardsetforowner/' + userId
     //console.log(baseURL)
     const responseData = await axios.get(baseURL)
 
@@ -79,7 +80,7 @@ export async function getAllCardSetsForUser(userId){
 }
 
 export async function deleteCardSet(cardSet){
-    const baseURL ='https://flashbackv1api.herokuapp.com/cardsetdelete/' + cardSet
+    const baseURL =process.env.REACT_APP_API_URL + 'cardsetdelete/' + cardSet
     const responseData = await axios.delete(baseURL)
     //console.log(responseData.data.results)
     return responseData.data.results

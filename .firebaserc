@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "flashback-d84b5"
+    "default": "flashback-d84b5",
+    "prod": "mylearningcards-d4291",
+    "dev": "uat-mylearningcards"
   }
 }

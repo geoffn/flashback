@@ -24,9 +24,9 @@ export default function AvailableCards(props) {
         getJWTUID(cookies.uid).then((UID) => {
             var baseCardURL
             if (!values.search){
-                baseCardURL = 'https://flashbackv1api.herokuapp.com/card/' + UID
+                baseCardURL = process.env.REACT_APP_API_URL + 'card/' + UID
             } else{
-                baseCardURL =  'https://flashbackv1api.herokuapp.com/cardsearch/' + UID + '/' + values.search
+                baseCardURL =  process.env.REACT_APP_API_URL + 'cardsearch/' + UID + '/' + values.search
             } 
             axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
                 .catch(console.error)
@@ -35,7 +35,7 @@ export default function AvailableCards(props) {
     }
     useEffect(() => {
         getJWTUID(cookies.uid).then((UID) => {
-        var baseCardURL =  'https://flashbackv1api.herokuapp.com/card/' + UID
+        var baseCardURL =  process.env.REACT_APP_API_URL + 'card/' + UID
         axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
             .catch(console.error)
         })
@@ -52,7 +52,7 @@ export default function AvailableCards(props) {
             cardId : card,
             cardSetId : cardSet
         }
-        const baseURL = 'https://flashbackv1api.herokuapp.com/cardsetaddcard'
+        const baseURL = process.env.REACT_APP_API_URL + 'cardsetaddcard'
     axios({
         method: 'post',
         url: baseURL,

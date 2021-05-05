@@ -3,14 +3,14 @@ import axios from 'axios'
 export async function loginUserByUID(uid) {
         
 
-        var baseURL = 'https://flashbackv1api.herokuapp.com/user/' + uid
+        var baseURL = process.env.REACT_APP_API_URL + '/user/' + uid
         //console.log(baseURL)
     
     var responseData = await axios.get(baseURL)
     console.log(responseData.data.results.length)
     //If user is found then update the last login date.
     if (responseData.data.results.length) {
-        const loginURL = 'https://flashbackv1api.herokuapp.com/loginuser/' + uid
+        const loginURL = process.env.REACT_APP_API_URL + 'loginuser/' + uid
         var loginData = await axios.get(loginURL)
         console.log("Login Date Set")
         return responseData.data.results
@@ -34,7 +34,7 @@ export async function loginAndRegisterNewUser(user){
         last_login_date: new Date(),
         level: 1
     }
-    const baseURL = 'https://flashbackv1api.herokuapp.com/user' 
+    const baseURL = process.env.REACT_APP_API_URL + 'user' 
     const createdUser = await axios({
         method: 'post',
         url: baseURL,

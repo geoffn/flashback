@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import NavBar from "./Navbar"
-import ViewCardSetCards from "./viewCardSetCards"
+import ViewCardSetCards from "./ViewCardSetCards"
 import { getCardsForCardset } from "./helpers/CardSetHelper"
 
 

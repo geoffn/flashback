@@ -1,16 +1,17 @@
 
 import axios from 'axios'
 
+
 export async function getAuthConfig() {
         
 
-        var baseURL = 'https://flashbackv1api.herokuapp.com/validate'
-        //console.log(baseURL)
-    
-    var responseData = await axios.get(baseURL)
-    //console.log(responseData.data)
 
-    return responseData.data
+    const data = {
+        AUTH_KEY : process.env.REACT_APP_AUTH_KEY,
+        AUTH_DOMAIN : process.env.REACT_APP_AUTH_DOMAIN,
+        JWT : process.env.REACT_APP_JWT
+    }
+    return data
            
     }
 

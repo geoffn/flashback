@@ -13,7 +13,7 @@ export default function AssignedCards(props) {
     useEffect(() => {
 
         //console.log('rerender:' + rerender)
-        var baseURL = 'https://flashbackv1api.herokuapp.com/cardset/' + currentCardSetId
+        var baseURL = process.env.REACT_APP_API_URL + 'cardset/' + currentCardSetId
         //console.log(baseURL)
         axios.get(baseURL).then((data) => usedSetData(data.data.results))
             .catch(console.error)

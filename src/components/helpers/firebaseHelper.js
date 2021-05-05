@@ -4,10 +4,10 @@ import {getAuthConfig} from './ConfigHelper'
 
 
 async function getConfig(){
-const config = await getAuthConfig()
+//const config = await getAuthConfig()
 const returnConfig = {
-    apiKey: config.AUTH_KEY,
-    authDomain: config.AUTH_DOMAIN 
+    apiKey: process.env.REACT_APP_AUTH_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN 
 }
 return returnConfig
 }

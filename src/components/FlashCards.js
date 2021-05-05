@@ -37,13 +37,13 @@ export default function FlashCards(props) {
     const [cardData, setCardData] = useState(null);
     
     useEffect(() => {
-        var baseURL = 'https://flashbackv1api.herokuapp.com/card'
+        var baseURL = process.env.REACT_APP_API_URL + 'card'
         if (props.location.search.length > 1){
             // console.log(props.location.search.length)
             var categoryString = querystring.parse(props.location.search)
         
             // console.log(categoryString)
-            baseURL = 'https://flashbackv1api.herokuapp.com/cardcat/' + categoryString.cat
+            baseURL = process.env.REACT_APP_API_URL + 'cardcat/' + categoryString.cat
             // console.log(baseURL)
         }
 
