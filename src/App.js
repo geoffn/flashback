@@ -102,9 +102,13 @@ function App() {
         {(firebaseInit && !isSignedIn) ? (
           <div  className="categoryBarContainer login">
           <div className="categoryBar logo"><a href="/"><img src="/img/mlmain.png" alt="My Learning Cards"></img>My Learning Cards</a></div>
+          <div className="categoryBar">Welcome to my learning cards where you can create your own personalized flashcards.  You can login/signup with the below methods. </div> 
           <div className="categoryBar">
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
            </div>
+           <div className="categoryBar outdoor"><img src="/img/Outdoor.png" alt="Outdoor Coders Logo"></img>
+           <a href="http://localhost:3000/terms.html" target="popup" 
+  onclick="window.open('terms.html','popup','width=600,height=600'); return false;">terms and conditions</a></div>
            </div>
          ): (<div></div>)}
         

@@ -131,6 +131,11 @@ code {
   color: var(--primary_card_text);
 }
 
+.categoryBar.outdoor img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .categoryBar a {
   text-decoration: none;
   display: block;
