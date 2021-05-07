@@ -6,7 +6,7 @@ import 'firebase/auth'
 //import {auth} from './components/helpers/firebaseHelper'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { getAuthConfig } from './components/helpers/ConfigHelper'
-//import { loginUserByUID, loginAndRegisterNewUser } from './components/helpers/UserHelper'
+import { loginUserByUID, loginAndRegisterNewUser } from './components/helpers/UserHelper'
 import { useCookies } from 'react-cookie'
 import { validateJWTCookie, createJWTCookie } from './components/helpers/jwt'
 import { SignOut } from './components/SignOut';
@@ -67,7 +67,7 @@ function App() {
     
                     setCookie('displayName', user.providerData[0].displayName, {path: '/'})
                     
-                    //setCurrentUser(user)
+                    loginUserByUID(user)
                     
                     setIsSignedIn(!!user)
                   })
@@ -81,12 +81,7 @@ function App() {
       }
     })
 
-    //If there is a cookie validate cookie if not then show login
-    //If there is a JWT validate JWT else sho login
-    //If valid JWT Login else go to login
-    //console.log("FiringUseEffectApp")
-    //console.log("issignedin=" + isSignedIn)
-      //Initial Firebase if not already started
+    
       
 
 

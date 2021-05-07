@@ -4,7 +4,7 @@ import '../App.css';
 import AddCards from './AddCards'
 import CardSetEdit from './CardSetEdit'
 import CardSets from './CardSets'
-import CardSetView from './cardSetView'
+import CardSetView from './CardSetView'
 import CardSetDelete from './CardSetDelete'
 
 function Entry() {
