@@ -1,7 +1,8 @@
 
 var jwt = require('jsonwebtoken')
 
-const jwtkey = 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYxNDY0MzExMCwiaWF0IjoxNjE0NjQzMTEwfQ.UQLQL86cAgeYwU78A3djiV9gc8eFQH9ZJ3RQCz3C-p8'
+const jwtkey = process.env.REACT_APP_JWT
+const jwtAPIKey = process.env.REACT_APP_API_JWT
 export async function validateJWTCookie(uid){
     //validate that the user data is correct.  Return empty array if not or user if correct.
     //const cookieJWT = uid
@@ -41,3 +42,8 @@ export async function createJWTCookie(uid){
     return jwtUser
 }
 
+export async function createJWTAPI(uid){
+    console.log(jwtAPIKey)
+    const jwtAPI = jwt.sign(uid,jwtAPIKey)
+    return jwtAPI
+}

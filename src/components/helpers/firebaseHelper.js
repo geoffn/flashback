@@ -9,6 +9,7 @@ const returnConfig = {
     apiKey: process.env.REACT_APP_AUTH_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN 
 }
+console.log("AUTHDOMAIN:")
 return returnConfig
 }
 getConfig().then((config) => {
