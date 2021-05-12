@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
 import { removeCard, updateAssignedCards } from './helpers/CardSetHelper'
-
+import { useCookies } from 'react-cookie'
+import {getJWTUID} from './helpers/jwt'
 
 export default function AssignedCards(props) {
-
+    const [cookies] = useCookies(['uid'])
     const [cardSetData, setCardSetData] = useState([])
     const [currentCardSetId] = useState(props.cardSetId)
     const [rerender, setRerender] = useState(0)
@@ -48,8 +49,9 @@ export default function AssignedCards(props) {
         // console.log(cardSetsPre)
     }
 
-    function removeAndUpdate(cardSet, card){
-        const CallResponse = removeCard(cardSet, card)
+    async function removeAndUpdate(cardSet, card){
+        const userId = await getJWTUID(cookies.uid)
+        const CallResponse = removeCard(cardSet, card, userId)
 
         if (CallResponse){
             updateAssignedCards(cardSet)

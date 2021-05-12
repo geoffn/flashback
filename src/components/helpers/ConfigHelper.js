@@ -1,10 +1,9 @@
 
 import axios from 'axios'
-import {createJWTAPI} from './jwt'
 
 export async function getAuthConfig() {
         
-
+    
 
 
     const data = {

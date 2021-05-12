@@ -1,5 +1,7 @@
-
+import firebase from 'firebase/app'
+import 'firebase/auth'
 var jwt = require('jsonwebtoken')
+
 
 const jwtkey = process.env.REACT_APP_JWT
 const jwtAPIKey = process.env.REACT_APP_API_JWT
@@ -23,13 +25,18 @@ export async function validateJWTCookie(uid){
 }
 
 export async function getJWTUID(uid){
+    
     try{
     const decode = jwt.verify(uid,jwtkey)
+    console.log("decode:" + decode.uid)
     return decode.uid
+    
     }catch(err){
-        console.log(err)
+        console.log("Error JTW:" +err)
+        
+        return false
     }
-    return false
+     
 }
 
 export async function createJWTCookie(uid){
@@ -43,9 +50,14 @@ export async function createJWTCookie(uid){
 }
 
 export async function createJWTAPI(uid){
-    console.log(jwtAPIKey)
+    //console.log("Cookie:" + document.cookie("uid"))
+    
+    console.log("UID:" + uid)
     try{
-        const jwtAPI = jwt.sign(uid,jwtAPIKey)
+        const user = {
+            uid: uid
+        }
+        const jwtAPI = jwt.sign(user,jwtAPIKey, {expiresIn:'5m'})
         console.log("JWTAPIT: " + jwtAPI)
         return jwtAPI
     }catch(err){

@@ -3,7 +3,7 @@ import axios from 'axios'
 import {createJWTAPI} from './jwt'
 
 
-export async function removeCard(cardSet, card) {
+export async function removeCard(cardSet, card, userId) {
         //Removes a specific card from the provided cardset
         //Takes cardSet which is the ID for the carset
         //and the card which is the id fof the card.
@@ -15,11 +15,14 @@ export async function removeCard(cardSet, card) {
         }
         var baseURL = process.env.REACT_APP_API_URL + 'cardsetremovecard'
         try{
+
+            const jwt = await createJWTAPI(userId)
                 const callResponse = axios({
                 method: 'post',
                 url: baseURL,
                 data: postData,
                 headers: {
+                    'authorization': `Bearer ${jwt}`,
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                     "Access-Control-Allow-Origin": "*",
@@ -70,8 +73,9 @@ async function updateAccessed(cardSet){
 export async function getAllCardSetsForUser(userId){
     //Pulls all the card set data for a specific user
     //TODO: Need to add userid info
+
     const jwt = await createJWTAPI(userId)
-    const baseURL = process.env.REACT_APP_API_URL + 'cardsetforowner/' + userId
+    const baseURL = process.env.REACT_APP_API_URL + 'cardsetforowner'
     console.log(baseURL)
     console.log(jwt)
 
