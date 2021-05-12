@@ -44,6 +44,12 @@ export async function createJWTCookie(uid){
 
 export async function createJWTAPI(uid){
     console.log(jwtAPIKey)
-    const jwtAPI = jwt.sign(uid,jwtAPIKey)
-    return jwtAPI
+    try{
+        const jwtAPI = jwt.sign(uid,jwtAPIKey)
+        console.log("JWTAPIT: " + jwtAPI)
+        return jwtAPI
+    }catch(err){
+        console.log(err)
+    }
+    
 }

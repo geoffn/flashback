@@ -70,10 +70,11 @@ async function updateAccessed(cardSet){
 export async function getAllCardSetsForUser(userId){
     //Pulls all the card set data for a specific user
     //TODO: Need to add userid info
-    const jwt = createJWTAPI(0)
+    const jwt = await createJWTAPI(userId)
     const baseURL = process.env.REACT_APP_API_URL + 'cardsetforowner/' + userId
-    //console.log(baseURL)
+    console.log(baseURL)
     console.log(jwt)
+
     const responseData = await axios.get(baseURL , {
         headers: {
           'authorization': `Bearer ${jwt}`
