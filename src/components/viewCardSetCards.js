@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import anime from 'animejs'
 import { getCardsForCardset } from './helpers/CardSetHelper'
+import { useCookies } from 'react-cookie'
+import {getJWTUID} from './helpers/jwt'
 
 let playing = false
 
@@ -30,14 +32,15 @@ const handleClick = (key, e) => {
 
 
 export default function ViewCardSetCards(props) {
-    
+    const [cookies] = useCookies(['uid'])
     const [cardListData, setCardListData] = useState();
     const [cardSet] = useState(props.cardSetId)
     
     useEffect(() => {
 
         async function populateCardData() {
-            const callResponse = await getCardsForCardset(cardSet)
+            const userId = await getJWTUID(cookies.uid)
+            const callResponse = await getCardsForCardset(cardSet,userId)
             
             await setCardListData(callResponse[0].cards)
 

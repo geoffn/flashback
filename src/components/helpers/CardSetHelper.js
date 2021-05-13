@@ -37,11 +37,14 @@ export async function removeCard(cardSet, card, userId) {
            
     }
 
-export async function updateAssignedCards(cardSet){
+export async function getCardsForCardset(cardSet, userId){
     var baseURL = process.env.REACT_APP_API_URL + 'cardset/' + cardSet
     console.log(baseURL)
-    
-    var responseData = await axios.get(baseURL)
+    const jwt = await createJWTAPI(userId)
+    var responseData = await axios.get(baseURL, {
+        headers: {
+          'authorization': `Bearer ${jwt}`
+        }})
     //console.log(responseData.data)
     //     await axios.get(baseURL).then((data) => {
     //     console.log("udpatecards:" + JSON.stringify(data.data.results))
@@ -51,18 +54,18 @@ export async function updateAssignedCards(cardSet){
 }
 
 
-export async function getCardsForCardset(cardSet){
-    //Cardset is touched and update last accessed_date
+// export async function getCardsForCardset(cardSet, userId){
+//     //Cardset is touched and update last accessed_date
 
-    updateAccessed(cardSet)
-    const baseURL = process.env.REACT_APP_API_URL + 'cardset/' + cardSet
-        //console.log(baseURL)
-        const responseData = await axios.get(baseURL)
+//     updateAccessed(cardSet)
+//     const baseURL = process.env.REACT_APP_API_URL + 'cardset/' + cardSet
+//         //console.log(baseURL)
+//         const responseData = await axios.get(baseURL)
 
-    //console.log(responseData.data.results)
+//     //console.log(responseData.data.results)
 
-    return responseData.data.results
-}
+//     return responseData.data.results
+// }
 
 async function updateAccessed(cardSet){
     const baseURL = process.env.REACT_APP_API_URL + 'cardsetaccessed/' + cardSet

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import NavBar from "./Navbar"
 import ViewCardSetCards from "./ViewCardSetCards"
 import { getCardsForCardset } from "./helpers/CardSetHelper"
-
+import { useCookies } from 'react-cookie'
+import {getJWTUID} from './helpers/jwt'
 
 const querystring = require('query-string')
 
@@ -14,7 +15,7 @@ export default function CardSets(props) {
     const [currentCardSetId] = useState(querystring.parse(props.location.search).id)
     const [cardsAdded] = useState(0)
     const [navBarLinks, setNavBarLinks] = useState()
-    
+    const [cookies] = useCookies(['uid'])
 
     // function forceCardsAdded(){
     //     setCardsAdded(cardsAdded => cardsAdded + 1)
@@ -22,7 +23,8 @@ export default function CardSets(props) {
     
     useEffect(() => {
         //console.log("card:" + currentCardSetId)
-        getCardsForCardset(currentCardSetId).then((data)=> {
+        getJWTUID(cookies.uid).then((userId) => {
+            getCardsForCardset(currentCardSetId, userId).then((data)=> {
            // console.log("data:" + data)
             const nav = [{
                 linkText: data[0].set_name,
@@ -35,6 +37,7 @@ export default function CardSets(props) {
             }]
             setNavBarLinks(nav)
         })
+    })
       
     }, [currentCardSetId])
 

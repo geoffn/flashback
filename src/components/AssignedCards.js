@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
-import { removeCard, updateAssignedCards } from './helpers/CardSetHelper'
+import { removeCard, getCardsForCardset } from './helpers/CardSetHelper'
 import { useCookies } from 'react-cookie'
 import {getJWTUID} from './helpers/jwt'
 
@@ -54,7 +54,7 @@ export default function AssignedCards(props) {
         const CallResponse = removeCard(cardSet, card, userId)
 
         if (CallResponse){
-            updateAssignedCards(cardSet)
+            getCardsForCardset(cardSet, userId)
         }
         setRerender(rerender => (rerender + 1))
     }
