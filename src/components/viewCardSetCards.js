@@ -37,18 +37,25 @@ export default function ViewCardSetCards(props) {
     const [cardSet] = useState(props.cardSetId)
     
     useEffect(() => {
-
-        async function populateCardData() {
-            const userId = await getJWTUID(cookies.uid)
-            const callResponse = await getCardsForCardset(cardSet,userId)
+        getJWTUID(cookies.uid).then((userId) => {
+            console.log("View UID:" + userId)
+            getCardsForCardset(cardSet, userId).then((callResponse) => {
+                console.log(callResponse)
+                setCardListData(callResponse[0].cards)
+            })
+        })
+        // async function populateCardData() {
+        //     const userId = await getJWTUID(cookies.uid)
+        //     console.log("View UID:" + userId)
+        //     const callResponse = await getCardsForCardset(cardSet,userId)
             
-            await setCardListData(callResponse[0].cards)
+        //     await setCardListData(callResponse[0].cards)
 
-        }
+        // }
         
-        populateCardData()
+        // populateCardData()
 
-    }, [cardSet])
+    }, [cardSet, cookies.uid])
 
 
 

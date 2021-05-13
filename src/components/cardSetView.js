@@ -39,7 +39,7 @@ export default function CardSets(props) {
         })
     })
       
-    }, [currentCardSetId])
+    }, [currentCardSetId, cookies.uid])
 
     
    

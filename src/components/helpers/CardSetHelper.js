@@ -48,7 +48,7 @@ export async function getCardsForCardset(cardSet, userId){
     //console.log(responseData.data)
     //     await axios.get(baseURL).then((data) => {
     //     console.log("udpatecards:" + JSON.stringify(data.data.results))
-    return responseData.data
+    return responseData.data.results
     // })
     //         .catch(console.error)
 }

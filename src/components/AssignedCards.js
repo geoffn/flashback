@@ -12,13 +12,16 @@ export default function AssignedCards(props) {
     //console.log("CardsAdded:" + props.cardsAdded)
 
     useEffect(() => {
-
+        getJWTUID(cookies.uid).then((userId) => {
+            getCardsForCardset(currentCardSetId, userId).then((data)=> {
+                usedSetData(data)
         //console.log('rerender:' + rerender)
-        var baseURL = process.env.REACT_APP_API_URL + 'cardset/' + currentCardSetId
+            //var baseURL = process.env.REACT_APP_API_URL + 'cardset/' + currentCardSetId
         //console.log(baseURL)
-        axios.get(baseURL).then((data) => usedSetData(data.data.results))
-            .catch(console.error)
-       
+            //axios.get(baseURL).then((data) => usedSetData(data.data.results))
+               // .catch(console.error)
+            })
+        })
 
     }, [currentCardSetId, props.cardsAdded, rerender])
 
