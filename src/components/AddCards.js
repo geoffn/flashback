@@ -20,8 +20,8 @@ export default function AddCards(props) {
     }
     const validationSchema = Yup.object({
         primary_word: Yup.string().required('Required!'),
-        secondary_word: Yup.string().required('Required!'),
-        category: Yup.string().required('Required!')
+        secondary_word: Yup.string().required('Required!')
+        // category: Yup.string().required('Required!')
     })
 
 
