@@ -92,9 +92,13 @@ export async function getAllCardSetsForUser(userId){
     return responseData.data.results
 }
 
-export async function deleteCardSet(cardSet){
+export async function deleteCardSet(cardSet, userId){
+    const jwt = await createJWTAPI(userId)
     const baseURL =process.env.REACT_APP_API_URL + 'cardsetdelete/' + cardSet
-    const responseData = await axios.delete(baseURL)
+    const responseData = await axios.delete(baseURL, {
+        headers: {
+          'authorization': `Bearer ${jwt}`
+        }})
     //console.log(responseData.data.results)
     return responseData.data.results
 }

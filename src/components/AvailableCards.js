@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie'
 import {getJWTUID} from './helpers/jwt'
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
+import {createJWTAPI} from './helpers/jwt'
 //Get The Card Set and then get all cards not assigned to another set.
 
 export default function AvailableCards(props) {
@@ -22,28 +23,40 @@ export default function AvailableCards(props) {
 
     const onSubmit = async (values, submitProps) => {
         getJWTUID(cookies.uid).then((UID) => {
+            createJWTAPI(UID).then((jwt) => {
             var baseCardURL
+            
             if (!values.search){
                 baseCardURL = process.env.REACT_APP_API_URL + 'card/' + UID
             } else{
                 baseCardURL =  process.env.REACT_APP_API_URL + 'cardsearch/' + UID + '/' + values.search
             } 
-            axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
+            axios.get(baseCardURL,{
+                headers: {
+                  'authorization': `Bearer ${jwt}`
+                }}).then((data) => setAvailableCards(data.data.results))
                 .catch(console.error)
             })
-
+        })
     }
     useEffect(() => {
         getJWTUID(cookies.uid).then((UID) => {
+            createJWTAPI(UID).then((jwt) => {
         var baseCardURL =  process.env.REACT_APP_API_URL + 'card/' + UID
-        axios.get(baseCardURL).then((data) => setAvailableCards(data.data.results))
+        axios.get(baseCardURL,{
+            headers: {
+              'authorization': `Bearer ${jwt}`
+            }}).then((data) => setAvailableCards(data.data.results))
             .catch(console.error)
         })
+    })
     }, [cookies.uid])
 
     //Create a list of individual cards from the cardset array of cards.
     
     function addCardToSet(cardSet, card) {
+        getJWTUID(cookies.uid).then((UID) => {
+            createJWTAPI(UID).then((jwt) => {
         //call remove card api
         //console.log("cards " + cardSet, card)
     //     console.log(req.body.cardId)
@@ -58,6 +71,7 @@ export default function AvailableCards(props) {
         url: baseURL,
         data: postData,
         headers: {
+            'authorization': `Bearer ${jwt}`,
             Accept: 'application/json',
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
@@ -67,7 +81,8 @@ export default function AvailableCards(props) {
         props.forceCardsAdded()
     })
     
-       
+})
+        })
        
     }
     return (

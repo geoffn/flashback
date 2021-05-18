@@ -13,11 +13,12 @@ export default function CardSetDelete(props){
 
     const deleteCards = event => {
         console.log(event)
-        deleteCardSet(currentCardSetId).then((data) => {
+        getJWTUID(cookies.uid).then((userId) => {
+        deleteCardSet(currentCardSetId, userId).then((data) => {
             props.history.push("/?refresh=true")
         })
 
-        
+    })
 
     }
 

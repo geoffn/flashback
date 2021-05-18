@@ -1,17 +1,24 @@
 import axios from 'axios'
 
+import {createJWTAPI} from './jwt'
 export async function loginUserByUID(user) {
         
 
         var baseURL = process.env.REACT_APP_API_URL + 'user/' + user.providerData[0].uid
         //console.log(baseURL)
-    
-    var responseData = await axios.get(baseURL)
+        const jwt = await createJWTAPI(user.providerData[0].uid)
+    var responseData = await axios.get(baseURL,{
+        headers: {
+          'authorization': `Bearer ${jwt}`
+        }})
     console.log(responseData.data.results.length)
     //If user is found then update the last login date.
     if (responseData.data.results.length) {
         const loginURL = process.env.REACT_APP_API_URL + 'loginuser/' + user.providerData[0].uid
-        var loginData = await axios.get(loginURL)
+        var loginData = await axios.get(loginURL,{
+            headers: {
+              'authorization': `Bearer ${jwt}`
+            }})
         console.log("Login Date Set")
         return responseData.data.results
     }else{
@@ -32,6 +39,7 @@ export async function loginUserByUID(user) {
         url: newUserURL,
         data: newUser,
         headers: {
+            'authorization': `Bearer ${jwt}`,
             Accept: 'application/json',
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
