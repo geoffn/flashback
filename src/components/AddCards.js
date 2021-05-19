@@ -28,8 +28,10 @@ export default function AddCards(props) {
     const onSubmit = async (values, submitProps) => {
         
         //const UID = getJWTUID(cookies.uid)
-        values['uid'] =  await getJWTUID(cookies.uid)
+        const userId =  await getJWTUID(cookies.uid)
+        values['uid'] = userId
         const jwt = await createJWTAPI(userId)
+        console.log("JWT:" + jwt)
         console.log(JSON.stringify(values))
         const formJSON = JSON.stringify(values)
         const baseURL = process.env.REACT_APP_API_URL + 'card'
@@ -58,6 +60,7 @@ export default function AddCards(props) {
             url: baseCardURL,
             data: postData,
             headers: {
+                'authorization': `Bearer ${jwt}`,
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",

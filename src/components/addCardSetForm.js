@@ -3,7 +3,7 @@ import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 //import firebase from 'firebase'
-import {getJWTUID} from './helpers/jwt'
+import {getJWTUID, createJWTAPI} from './helpers/jwt'
 import { useCookies } from 'react-cookie'
 
 export default function AddCardSetForm(props){
@@ -24,8 +24,9 @@ export default function AddCardSetForm(props){
         
         getJWTUID(cookies.uid).then((UID) => {
             values['uid'] = UID
-        
+            createJWTAPI(UID).then((jwt) => {
         console.log(values)
+        console.log("CARDSET JWT" + jwt)
         
         const formJSON = JSON.stringify(values)
         const baseURL = process.env.REACT_APP_API_URL + 'cardset'
@@ -35,6 +36,7 @@ export default function AddCardSetForm(props){
             url: baseURL,
             data: formJSON,
             headers: {
+                'authorization': `Bearer ${jwt}`,
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
@@ -44,7 +46,8 @@ export default function AddCardSetForm(props){
             props.forceCardsAdded()
             submitProps.resetForm()
             
-        })        
+        })  
+    })      
     })
 }
 

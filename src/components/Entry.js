@@ -6,6 +6,7 @@ import CardSetEdit from './CardSetEdit'
 import CardSets from './CardSets'
 import CardSetView from './CardSetView'
 import CardSetDelete from './CardSetDelete'
+import ViewCurrentConfig from './ViewCurrentConfig';
 
 
 
@@ -22,6 +23,7 @@ function Entry() {
                 <Route path="/cardsetedit" component={CardSetEdit} />
                 <Route path="/cardsetview" component={CardSetView} />
                 <Route path="/cardsetdelete" component={CardSetDelete} />
+                {/* <Route path="/viewcurrentconfig" component={ViewCurrentConfig} /> */}
             </Switch>
         </Router>
 
