@@ -68,12 +68,14 @@ export async function loginAndRegisterNewUser(user){
         last_login_date: new Date(),
         level: 1
     }
+    const jwt = await createJWTAPI(user.providerData[0].uid)
     const baseURL = process.env.REACT_APP_API_URL + 'user' 
     const createdUser = await axios({
         method: 'post',
         url: baseURL,
         data: newUser,
         headers: {
+            'authorization': `Bearer ${jwt}`,
             Accept: 'application/json',
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
