@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 //import firebase from 'firebase'
 import { useCookies } from 'react-cookie'
-import {getJWTUID} from './helpers/jwt'
+import {getJWTUID, createJWTAPI} from './helpers/jwt'
 
 
 
@@ -29,7 +29,7 @@ export default function AddCards(props) {
         
         //const UID = getJWTUID(cookies.uid)
         values['uid'] =  await getJWTUID(cookies.uid)
-        
+        const jwt = await createJWTAPI(userId)
         console.log(JSON.stringify(values))
         const formJSON = JSON.stringify(values)
         const baseURL = process.env.REACT_APP_API_URL + 'card'
@@ -40,6 +40,7 @@ export default function AddCards(props) {
             url: baseURL,
             data: formJSON,
             headers: {
+                'authorization': `Bearer ${jwt}`,
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
